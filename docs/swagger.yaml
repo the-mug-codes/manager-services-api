@@ -1,0 +1,2571 @@
+basePath: /v1
+definitions:
+  attachment.insertCharge:
+    properties:
+      amount_value:
+        type: number
+      comments:
+        type: string
+      contract_id:
+        type: string
+      contract_title:
+        type: string
+      discount_comments:
+        type: string
+      discount_value:
+        type: number
+      extra_amount_comments:
+        type: string
+      extra_amount_value:
+        type: number
+      installment_number:
+        type: integer
+      items:
+        items:
+          $ref: '#/definitions/entities.InvoiceItem'
+        type: array
+      late_invoices:
+        type: boolean
+      notification:
+        properties:
+          email:
+            type: boolean
+          whatsapp:
+            type: boolean
+        type: object
+      payment:
+        properties:
+          bank_slip:
+            type: boolean
+          pix:
+            type: boolean
+        type: object
+      person_id:
+        type: string
+      total_amount_value:
+        type: number
+      warning_comments:
+        type: string
+    type: object
+  attachment.insertContract:
+    properties:
+      amount_value:
+        type: number
+      comments:
+        type: string
+      contract_model:
+        type: string
+      description:
+        type: string
+      discount_value:
+        type: number
+      document:
+        type: string
+      due_date:
+        type: string
+      extra_amount_value:
+        type: number
+      installment_number:
+        type: integer
+      labels:
+        items:
+          type: string
+        type: array
+      person_id:
+        type: string
+      products:
+        items:
+          type: string
+        type: array
+      project_id:
+        type: string
+      reseller_id:
+        type: string
+      signed_at:
+        type: string
+      total_amount_value:
+        type: number
+    required:
+    - amount_value
+    - comments
+    - contract_model
+    - description
+    - discount_value
+    - due_date
+    - extra_amount_value
+    - total_amount_value
+    type: object
+  attachment.insertHelpDeskTicket:
+    properties:
+      code:
+        type: integer
+      due_date:
+        type: string
+      labels:
+        items:
+          type: string
+        type: array
+      level:
+        type: string
+      person_id:
+        type: string
+      project_id:
+        type: string
+      source:
+        type: string
+      source_id:
+        type: string
+      status:
+        type: boolean
+      title:
+        type: string
+    required:
+    - code
+    - due_date
+    - level
+    - source
+    - source_id
+    - title
+    type: object
+  attachment.insertInvoice:
+    properties:
+      amount_value:
+        type: number
+      comments:
+        type: string
+      contract_id:
+        type: string
+      contract_title:
+        type: string
+      discount_comments:
+        type: string
+      discount_value:
+        type: number
+      extra_amount_comments:
+        type: string
+      extra_amount_value:
+        type: number
+      installment_number:
+        type: integer
+      items:
+        items:
+          properties:
+            price_value:
+              type: number
+            product_id:
+              type: string
+            quantity:
+              type: number
+            total_amount:
+              type: number
+          required:
+          - price_value
+          - product_id
+          - quantity
+          - total_amount
+          type: object
+        type: array
+      late_invoices:
+        type: boolean
+      person_id:
+        type: string
+      total_amount_value:
+        type: number
+      warning_comments:
+        type: string
+    type: object
+  attachment.insertLabel:
+    properties:
+      name:
+        type: string
+    required:
+    - name
+    type: object
+  attachment.insertNotification:
+    properties:
+      email:
+        type: boolean
+      whatsapp:
+        type: boolean
+    type: object
+  attachment.insertPayment:
+    properties:
+      payment:
+        properties:
+          bank_slip:
+            type: boolean
+          pix:
+            type: boolean
+        type: object
+      project_name:
+        type: string
+    type: object
+  attachment.insertPerson:
+    properties:
+      name:
+        description: label name
+        type: string
+    required:
+    - name
+    type: object
+  attachment.insertProduct:
+    properties:
+      categories:
+        items:
+          type: string
+        type: array
+      description:
+        type: string
+      name:
+        type: string
+      prices:
+        items:
+          properties:
+            code:
+              type: string
+            description:
+              type: string
+            status:
+              type: boolean
+            title:
+              type: string
+            value:
+              type: number
+          required:
+          - code
+          - description
+          - value
+          type: object
+        type: array
+      status:
+        type: boolean
+    required:
+    - description
+    - name
+    type: object
+  attachment.insertProductCategory:
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+      products:
+        items:
+          type: string
+        type: array
+      status:
+        type: boolean
+    required:
+    - description
+    - name
+    type: object
+  attachment.insertProject:
+    properties:
+      comments:
+        type: string
+      content:
+        type: string
+      deliveries:
+        items:
+          type: string
+        type: array
+      due_date:
+        type: string
+      kind:
+        type: string
+      labels:
+        items:
+          properties:
+            id:
+              type: string
+          required:
+          - id
+          type: object
+        type: array
+      person_id:
+        type: string
+      requirements:
+        items:
+          type: string
+        type: array
+      title:
+        type: string
+    required:
+    - content
+    - kind
+    - requirements
+    - title
+    type: object
+  attachment.insertTicketMessage:
+    properties:
+      description:
+        type: string
+    required:
+    - description
+    type: object
+  attachment.updateContract:
+    properties:
+      amount_value:
+        type: number
+      comments:
+        type: string
+      contract_model:
+        type: string
+      description:
+        type: string
+      discount_value:
+        type: number
+      document:
+        type: string
+      due_date:
+        type: string
+      extra_amount_value:
+        type: number
+      installment_number:
+        type: integer
+      labels:
+        items:
+          properties:
+            id:
+              type: string
+          type: object
+        type: array
+      person_id:
+        type: string
+      products:
+        items:
+          properties:
+            id:
+              type: string
+          type: object
+        type: array
+      project_id:
+        type: string
+      reseller_id:
+        type: string
+      signed_at:
+        type: string
+      total_amount_value:
+        type: number
+    required:
+    - amount_value
+    - comments
+    - contract_model
+    - description
+    - discount_value
+    - due_date
+    - extra_amount_value
+    - total_amount_value
+    type: object
+  attachment.updateHelpDeskTicket:
+    properties:
+      code:
+        type: integer
+      due_date:
+        type: string
+      labels:
+        items:
+          type: string
+        type: array
+      level:
+        type: string
+      person_id:
+        type: string
+      project_id:
+        type: string
+      source:
+        type: string
+      source_id:
+        type: string
+      status:
+        type: boolean
+      title:
+        type: string
+    required:
+    - code
+    - due_date
+    - level
+    - source
+    - source_id
+    - title
+    type: object
+  attachment.updateLabel:
+    properties:
+      name:
+        type: string
+    required:
+    - name
+    type: object
+  attachment.updatePerson:
+    properties:
+      name:
+        description: label name
+        type: string
+    required:
+    - name
+    type: object
+  attachment.updateProduct:
+    properties:
+      categories:
+        items:
+          type: string
+        type: array
+      description:
+        type: string
+      name:
+        type: string
+      prices:
+        items:
+          properties:
+            code:
+              type: string
+            description:
+              type: string
+            id:
+              type: string
+            status:
+              type: boolean
+            title:
+              type: string
+            value:
+              type: number
+          required:
+          - code
+          - description
+          - value
+          type: object
+        type: array
+      status:
+        type: boolean
+    required:
+    - description
+    - name
+    type: object
+  attachment.updateProductCategory:
+    properties:
+      description:
+        type: string
+      kind:
+        type: string
+      name:
+        type: string
+      products:
+        items:
+          type: string
+        type: array
+      status:
+        type: boolean
+    required:
+    - description
+    - kind
+    - name
+    type: object
+  attachment.updateProject:
+    properties:
+      comments:
+        type: string
+      content:
+        type: string
+      deliveries:
+        items:
+          type: string
+        type: array
+      due_date:
+        type: string
+      kind:
+        type: string
+      labels:
+        items:
+          type: string
+        type: array
+      person_id:
+        type: string
+      requirements:
+        items:
+          type: string
+        type: array
+      title:
+        type: string
+    required:
+    - content
+    - kind
+    - requirements
+    - title
+    type: object
+  entities.Contract:
+    properties:
+      amount_value:
+        type: number
+      comments:
+        type: string
+      contract_model:
+        type: string
+      created_at:
+        type: string
+      deleted_at:
+        $ref: '#/definitions/gorm.DeletedAt'
+      description:
+        type: string
+      discount_value:
+        type: number
+      document:
+        type: string
+      due_date:
+        type: string
+      extra_amount_value:
+        type: number
+      id:
+        type: string
+      installment_number:
+        type: integer
+      invoices:
+        items:
+          $ref: '#/definitions/entities.Invoice'
+        type: array
+      labels:
+        items:
+          $ref: '#/definitions/entities.Label'
+        type: array
+      person:
+        $ref: '#/definitions/entities.Person'
+      person_id:
+        type: string
+      products:
+        items:
+          $ref: '#/definitions/entities.Product'
+        type: array
+      project:
+        $ref: '#/definitions/entities.Project'
+      project_id:
+        type: string
+      reseller_id:
+        type: string
+      signed_at:
+        type: string
+      total_amount_value:
+        type: number
+      updated_at:
+        type: string
+    required:
+    - amount_value
+    - comments
+    - contract_model
+    - description
+    - discount_value
+    - due_date
+    - extra_amount_value
+    - total_amount_value
+    type: object
+  entities.HelpDeskTicket:
+    properties:
+      code:
+        type: integer
+      created_at:
+        type: string
+      deleted_at:
+        $ref: '#/definitions/gorm.DeletedAt'
+      due_date:
+        type: string
+      id:
+        type: string
+      labels:
+        items:
+          $ref: '#/definitions/entities.Label'
+        type: array
+      level:
+        type: string
+      messages:
+        items:
+          $ref: '#/definitions/entities.HelpDeskTicketMessage'
+        type: array
+      person:
+        $ref: '#/definitions/entities.Person'
+      person_id:
+        type: string
+      project:
+        $ref: '#/definitions/entities.Project'
+      project_id:
+        type: string
+      source:
+        type: string
+      source_id:
+        type: string
+      status:
+        type: boolean
+      title:
+        type: string
+      updated_at:
+        type: string
+    required:
+    - code
+    - due_date
+    - level
+    - source
+    - source_id
+    - title
+    type: object
+  entities.HelpDeskTicketMessage:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      ticket_id:
+        type: string
+    required:
+    - description
+    - ticket_id
+    type: object
+  entities.Invoice:
+    properties:
+      amount_value:
+        type: number
+      bank_slip_code:
+        type: string
+      bank_slip_document:
+        type: string
+      bank_slip_input_code:
+        type: string
+      code:
+        type: string
+      comments:
+        type: string
+      contract_id:
+        type: string
+      created_at:
+        type: string
+      deleted_at:
+        $ref: '#/definitions/gorm.DeletedAt'
+      discount_comments:
+        type: string
+      discount_value:
+        type: number
+      due_date:
+        type: string
+      extra_amount_comments:
+        type: string
+      extra_amount_value:
+        type: number
+      id:
+        type: string
+      installment_number:
+        type: integer
+      items:
+        items:
+          $ref: '#/definitions/entities.InvoiceItem'
+        type: array
+      late_invoices:
+        type: boolean
+      paid_at:
+        type: string
+      payment_comments:
+        type: string
+      payment_method:
+        type: string
+      person:
+        $ref: '#/definitions/entities.Person'
+      person_id:
+        type: string
+      pix_copy_paste:
+        type: string
+      pix_qr_code:
+        type: string
+      status:
+        type: boolean
+      total_amount_value:
+        type: number
+      updated_at:
+        type: string
+      warning_comments:
+        type: string
+    required:
+    - amount_value
+    - code
+    - discount_value
+    - due_date
+    - extra_amount_value
+    - total_amount_value
+    type: object
+  entities.InvoiceItem:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        $ref: '#/definitions/gorm.DeletedAt'
+      id:
+        type: string
+      invoice_id:
+        type: string
+      price_value:
+        type: number
+      product:
+        $ref: '#/definitions/entities.Product'
+      product_id:
+        type: string
+      quantity:
+        type: number
+      total_amount:
+        type: number
+    required:
+    - price_value
+    - quantity
+    - total_amount
+    type: object
+  entities.Label:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      updated_at:
+        type: string
+    required:
+    - name
+    type: object
+  entities.Person:
+    properties:
+      addresses:
+        items:
+          $ref: '#/definitions/entities.PersonAddress'
+        type: array
+      created_at:
+        type: string
+      deleted_at:
+        $ref: '#/definitions/gorm.DeletedAt'
+      document:
+        type: string
+      emails:
+        items:
+          $ref: '#/definitions/entities.PersonEmail'
+        type: array
+      id:
+        type: string
+      main_person_id:
+        type: string
+      name:
+        type: string
+      nickname:
+        type: string
+      phones:
+        items:
+          $ref: '#/definitions/entities.PersonPhone'
+        type: array
+      status:
+        type: boolean
+      updated_at:
+        type: string
+    required:
+    - document
+    - name
+    type: object
+  entities.PersonAddress:
+    properties:
+      address:
+        type: string
+      city:
+        type: string
+      complement:
+        type: string
+      country:
+        type: string
+      created_at:
+        type: string
+      deleted_at:
+        $ref: '#/definitions/gorm.DeletedAt'
+      id:
+        type: string
+      is_main:
+        type: boolean
+      neighborhood:
+        type: string
+      number:
+        type: string
+      person_id:
+        type: string
+      state:
+        type: string
+      updated_at:
+        type: string
+      zip_code:
+        type: string
+    required:
+    - address
+    - city
+    - country
+    - neighborhood
+    - person_id
+    - state
+    - zip_code
+    type: object
+  entities.PersonEmail:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        $ref: '#/definitions/gorm.DeletedAt'
+      email:
+        type: string
+      id:
+        type: string
+      is_main:
+        type: boolean
+      person_id:
+        type: string
+      updated_at:
+        type: string
+    required:
+    - person_id
+    type: object
+  entities.PersonPhone:
+    properties:
+      area_code:
+        type: integer
+      country_code:
+        type: integer
+      created_at:
+        type: string
+      deleted_at:
+        $ref: '#/definitions/gorm.DeletedAt'
+      id:
+        type: string
+      is_main:
+        type: boolean
+      is_whatsapp:
+        type: boolean
+      person_id:
+        type: string
+      phone_number:
+        type: integer
+      updated_at:
+        type: string
+    required:
+    - area_code
+    - country_code
+    - person_id
+    - phone_number
+    type: object
+  entities.Product:
+    properties:
+      categories:
+        items:
+          $ref: '#/definitions/entities.ProductCategory'
+        type: array
+      created_at:
+        type: string
+      deleted_at:
+        $ref: '#/definitions/gorm.DeletedAt'
+      description:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      prices:
+        items:
+          $ref: '#/definitions/entities.ProductPrice'
+        type: array
+      status:
+        type: boolean
+      updated_at:
+        type: string
+    required:
+    - description
+    - name
+    type: object
+  entities.ProductCategory:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        $ref: '#/definitions/gorm.DeletedAt'
+      description:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      products:
+        items:
+          $ref: '#/definitions/entities.Product'
+        type: array
+      status:
+        type: boolean
+      updated_at:
+        type: string
+    required:
+    - description
+    - name
+    type: object
+  entities.ProductPrice:
+    properties:
+      code:
+        type: string
+      created_at:
+        type: string
+      deleted_at:
+        $ref: '#/definitions/gorm.DeletedAt'
+      description:
+        type: string
+      id:
+        type: string
+      product_id:
+        type: string
+      status:
+        type: boolean
+      title:
+        type: string
+      updated_at:
+        type: string
+      value:
+        type: number
+    required:
+    - code
+    - description
+    - value
+    type: object
+  entities.Project:
+    properties:
+      comments:
+        type: string
+      content:
+        type: string
+      created_at:
+        type: string
+      deleted_at:
+        $ref: '#/definitions/gorm.DeletedAt'
+      deliveries:
+        items:
+          type: string
+        type: array
+      due_date:
+        type: string
+      id:
+        type: string
+      kind:
+        type: string
+      labels:
+        items:
+          $ref: '#/definitions/entities.Label'
+        type: array
+      person:
+        $ref: '#/definitions/entities.Person'
+      person_id:
+        type: string
+      requirements:
+        items:
+          type: string
+        type: array
+      title:
+        type: string
+      updated_at:
+        type: string
+    required:
+    - content
+    - kind
+    - requirements
+    - title
+    type: object
+  gorm.DeletedAt:
+    properties:
+      time:
+        type: string
+      valid:
+        description: Valid is true if Time is not NULL
+        type: boolean
+    type: object
+  helpers.Error:
+    properties:
+      payload:
+        properties:
+          code:
+            example: 500
+            type: integer
+          details:
+            example: error details
+            type: string
+          message:
+            example: error message
+            type: string
+        required:
+        - code
+        - details
+        - message
+        type: object
+      success:
+        example: false
+        type: boolean
+    required:
+    - success
+    type: object
+  helpers.ResponseMany-array_entities_Contract:
+    properties:
+      pagination:
+        $ref: '#/definitions/utils.Pagination'
+      payload:
+        items:
+          $ref: '#/definitions/entities.Contract'
+        type: array
+      success:
+        example: true
+        type: boolean
+    required:
+    - success
+    type: object
+  helpers.ResponseMany-array_entities_HelpDeskTicket:
+    properties:
+      pagination:
+        $ref: '#/definitions/utils.Pagination'
+      payload:
+        items:
+          $ref: '#/definitions/entities.HelpDeskTicket'
+        type: array
+      success:
+        example: true
+        type: boolean
+    required:
+    - success
+    type: object
+  helpers.ResponseMany-array_entities_HelpDeskTicketMessage:
+    properties:
+      pagination:
+        $ref: '#/definitions/utils.Pagination'
+      payload:
+        items:
+          $ref: '#/definitions/entities.HelpDeskTicketMessage'
+        type: array
+      success:
+        example: true
+        type: boolean
+    required:
+    - success
+    type: object
+  helpers.ResponseMany-array_entities_Invoice:
+    properties:
+      pagination:
+        $ref: '#/definitions/utils.Pagination'
+      payload:
+        items:
+          $ref: '#/definitions/entities.Invoice'
+        type: array
+      success:
+        example: true
+        type: boolean
+    required:
+    - success
+    type: object
+  helpers.ResponseMany-array_entities_Label:
+    properties:
+      pagination:
+        $ref: '#/definitions/utils.Pagination'
+      payload:
+        items:
+          $ref: '#/definitions/entities.Label'
+        type: array
+      success:
+        example: true
+        type: boolean
+    required:
+    - success
+    type: object
+  helpers.ResponseMany-array_entities_Person:
+    properties:
+      pagination:
+        $ref: '#/definitions/utils.Pagination'
+      payload:
+        items:
+          $ref: '#/definitions/entities.Person'
+        type: array
+      success:
+        example: true
+        type: boolean
+    required:
+    - success
+    type: object
+  helpers.ResponseMany-array_entities_Product:
+    properties:
+      pagination:
+        $ref: '#/definitions/utils.Pagination'
+      payload:
+        items:
+          $ref: '#/definitions/entities.Product'
+        type: array
+      success:
+        example: true
+        type: boolean
+    required:
+    - success
+    type: object
+  helpers.ResponseMany-array_entities_ProductCategory:
+    properties:
+      pagination:
+        $ref: '#/definitions/utils.Pagination'
+      payload:
+        items:
+          $ref: '#/definitions/entities.ProductCategory'
+        type: array
+      success:
+        example: true
+        type: boolean
+    required:
+    - success
+    type: object
+  helpers.ResponseMany-array_entities_Project:
+    properties:
+      pagination:
+        $ref: '#/definitions/utils.Pagination'
+      payload:
+        items:
+          $ref: '#/definitions/entities.Project'
+        type: array
+      success:
+        example: true
+        type: boolean
+    required:
+    - success
+    type: object
+  helpers.ResponseNone:
+    properties:
+      success:
+        example: true
+        type: boolean
+    required:
+    - success
+    type: object
+  helpers.ResponseOne-entities_Contract:
+    properties:
+      payload:
+        $ref: '#/definitions/entities.Contract'
+      success:
+        example: true
+        type: boolean
+    required:
+    - success
+    type: object
+  helpers.ResponseOne-entities_HelpDeskTicket:
+    properties:
+      payload:
+        $ref: '#/definitions/entities.HelpDeskTicket'
+      success:
+        example: true
+        type: boolean
+    required:
+    - success
+    type: object
+  helpers.ResponseOne-entities_HelpDeskTicketMessage:
+    properties:
+      payload:
+        $ref: '#/definitions/entities.HelpDeskTicketMessage'
+      success:
+        example: true
+        type: boolean
+    required:
+    - success
+    type: object
+  helpers.ResponseOne-entities_Invoice:
+    properties:
+      payload:
+        $ref: '#/definitions/entities.Invoice'
+      success:
+        example: true
+        type: boolean
+    required:
+    - success
+    type: object
+  helpers.ResponseOne-entities_Label:
+    properties:
+      payload:
+        $ref: '#/definitions/entities.Label'
+      success:
+        example: true
+        type: boolean
+    required:
+    - success
+    type: object
+  helpers.ResponseOne-entities_Person:
+    properties:
+      payload:
+        $ref: '#/definitions/entities.Person'
+      success:
+        example: true
+        type: boolean
+    required:
+    - success
+    type: object
+  helpers.ResponseOne-entities_Product:
+    properties:
+      payload:
+        $ref: '#/definitions/entities.Product'
+      success:
+        example: true
+        type: boolean
+    required:
+    - success
+    type: object
+  helpers.ResponseOne-entities_ProductCategory:
+    properties:
+      payload:
+        $ref: '#/definitions/entities.ProductCategory'
+      success:
+        example: true
+        type: boolean
+    required:
+    - success
+    type: object
+  helpers.ResponseOne-entities_Project:
+    properties:
+      payload:
+        $ref: '#/definitions/entities.Project'
+      success:
+        example: true
+        type: boolean
+    required:
+    - success
+    type: object
+  utils.Pagination:
+    properties:
+      page:
+        type: integer
+      page_size:
+        type: integer
+      pages:
+        items:
+          type: integer
+        type: array
+      total_pages:
+        type: integer
+      total_registers:
+        type: integer
+    type: object
+host: localhost:9000
+info:
+  contact: {}
+  description: Welcome to the official documentation for the The Mug Codes manager.
+    This guide provides comprehensive information to integrate and utilize our API
+    effectively. It includes details on authentication, endpoints, rate limits, error
+    handling, best practices, and support. Whether you're a beginner or an experienced
+    developer, this documentation serves as your roadmap to leverage our services
+    seamlessly.
+  title: The Mug Codes
+  version: "1.0"
+paths:
+  /contract/{id}:
+    delete:
+      description: Removes a contract by idfrom database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseNone'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Delete a Contract
+      tags:
+      - Contracts
+  /contracts:
+    get:
+      description: Get all contracts from database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseMany-array_entities_Contract'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Show All Contract
+      tags:
+      - Contracts
+    post:
+      consumes:
+      - application/json
+      description: Creates a new contract in database.
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/attachment.insertContract'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_Contract'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Create a Contract
+      tags:
+      - Contracts
+  /contracts/{id}:
+    get:
+      description: Get a contract by idin database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_Contract'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Show a Contract
+      tags:
+      - Contracts
+    put:
+      consumes:
+      - application/json
+      description: Updates a ccontract by idin database.
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/attachment.updateContract'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_Contract'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Change a Contract
+      tags:
+      - Contracts
+  /helpdesk/tickets:
+    get:
+      description: Get all helpdesk tickets from database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseMany-array_entities_HelpDeskTicket'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Show All HelpDesk Tickets
+      tags:
+      - HelpDesk - Tickets
+    post:
+      consumes:
+      - application/json
+      description: Creates a new helpdesk ticket in database.
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/attachment.insertHelpDeskTicket'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_HelpDeskTicket'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Create a HelpDesk Ticket
+      tags:
+      - HelpDesk - Tickets
+  /helpdesk/tickets/:id/messages:
+    get:
+      description: Get all messages from a helpdesk ticket from database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseMany-array_entities_HelpDeskTicketMessage'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Show All HelpDesk Ticket Messages
+      tags:
+      - HelpDesk - Tickets Messages
+  /helpdesk/tickets/{id}:
+    delete:
+      description: Removes a helpdesk ticket by idfrom database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseNone'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Delete a HelpDesk Ticket
+      tags:
+      - HelpDesk - Tickets
+    get:
+      description: Get a helpdesk ticket by idin database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_HelpDeskTicket'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Show a HelpDesk Ticket
+      tags:
+      - HelpDesk - Tickets
+    put:
+      consumes:
+      - application/json
+      description: Updates a helpdesk ticket by idin database.
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/attachment.updateHelpDeskTicket'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_HelpDeskTicket'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Change a HelpDesk Ticket
+      tags:
+      - HelpDesk - Tickets
+  /helpdesk/tickets/messages:
+    get:
+      description: Get all helpdesk tickets messages from database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseMany-array_entities_HelpDeskTicketMessage'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Show All HelpDesk Tickets Messages
+      tags:
+      - HelpDesk - Tickets Messages
+    post:
+      consumes:
+      - application/json
+      description: Creates a new helpdesk ticket message in database.
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/attachment.insertTicketMessage'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_HelpDeskTicketMessage'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Create a HelpDesk Ticket Message
+      tags:
+      - HelpDesk - Tickets Messages
+  /helpdesk/tickets/messages/{id}:
+    get:
+      description: Get a helpdesk ticket message by idin database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_HelpDeskTicketMessage'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Show a HelpDesk Ticket Message
+      tags:
+      - HelpDesk - Tickets Messages
+  /invoices:
+    get:
+      description: Get all invoices from database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseMany-array_entities_Invoice'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Show All Invoices
+      tags:
+      - Invoices
+    post:
+      consumes:
+      - application/json
+      description: Creates a new invoice in database.
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/attachment.insertInvoice'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_Invoice'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Create a Invoice
+      tags:
+      - Invoices
+  /invoices/{id}:
+    get:
+      description: Get a invoice by idin database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_Invoice'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Show a Invoice
+      tags:
+      - Invoices
+  /invoices/charge/:id:
+    post:
+      consumes:
+      - application/json
+      description: Creates a new invoice charge by invoice id in database.
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/attachment.insertCharge'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_Invoice'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Create a Invoice Charge
+      tags:
+      - Invoices
+  /invoices/notifications/:id:
+    post:
+      consumes:
+      - application/json
+      description: Creates a new invoice notification by invoice id in database.
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/attachment.insertNotification'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_Invoice'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Create a Invoice Notification
+      tags:
+      - Invoices
+  /invoices/payments/:id:
+    post:
+      consumes:
+      - application/json
+      description: Creates a new invoice payment method by invoice id in database.
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/attachment.insertPayment'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_Invoice'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Create a Invoice Payment Method
+      tags:
+      - Invoices
+  /invoices/pdf/{id}:
+    get:
+      description: Get a invoice pdf file by idin database.
+      produces:
+      - application/pdf
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Show a Invoice PDF File
+      tags:
+      - Invoices
+  /labels:
+    get:
+      description: Get all labels from database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseMany-array_entities_Label'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Show All Labels
+      tags:
+      - Labels
+    post:
+      consumes:
+      - application/json
+      description: Creates a new label in database.
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/attachment.insertLabel'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_Label'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Create a Label
+      tags:
+      - Labels
+  /labels/{id}:
+    delete:
+      description: Removes a label by idfrom database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseNone'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Delete a Label
+      tags:
+      - Labels
+    get:
+      description: Get a label by idin database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_Label'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Show a Label
+      tags:
+      - Labels
+    put:
+      consumes:
+      - application/json
+      description: Updates a label by idin database.
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/attachment.updateLabel'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_Label'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Change a Label
+      tags:
+      - Labels
+  /people:
+    get:
+      description: Get all people from database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseMany-array_entities_Person'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Show All People
+      tags:
+      - People
+    post:
+      consumes:
+      - application/json
+      description: Creates a new person in database.
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/attachment.insertPerson'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_Person'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Create a Person
+      tags:
+      - People
+  /people/{id}:
+    delete:
+      description: Removes a person by idfrom database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseNone'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Delete a Person
+      tags:
+      - People
+    get:
+      description: Get a person by idin database.
+      parameters:
+      - description: email
+        in: query
+        name: email
+        type: string
+      - description: phone number
+        in: query
+        name: phone-number
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_Person'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Show a Person
+      tags:
+      - People
+    put:
+      consumes:
+      - application/json
+      description: Updates a person by idin database.
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/attachment.updatePerson'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_Person'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Change a Person
+      tags:
+      - People
+  /products:
+    get:
+      description: Get all products from database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseMany-array_entities_Product'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Show All Products
+      tags:
+      - Products
+    post:
+      consumes:
+      - application/json
+      description: Creates a new product in database.
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/attachment.insertProduct'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_Product'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Create a Product
+      tags:
+      - Products
+  /products/{id}:
+    delete:
+      description: Removes a product by idfrom database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseNone'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Delete a Product
+      tags:
+      - Products
+    get:
+      description: Get a product by idin database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_Product'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Show a Products
+      tags:
+      - Products
+    put:
+      consumes:
+      - application/json
+      description: Updates a product by idin database.
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/attachment.updateProduct'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_Product'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Change a Product
+      tags:
+      - Products
+  /products/categories:
+    get:
+      description: Get all products categories from database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseMany-array_entities_ProductCategory'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Show All Products Categories
+      tags:
+      - Products - Categories
+    post:
+      consumes:
+      - application/json
+      description: Creates a new product category in database.
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/attachment.insertProductCategory'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_ProductCategory'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Create a Product Category
+      tags:
+      - Products - Categories
+  /products/categories/{id}:
+    delete:
+      description: Removes a product category by idfrom database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseNone'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Delete a Product Category
+      tags:
+      - Products - Categories
+    get:
+      description: Get a product category by idin database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_ProductCategory'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Show a Product Category
+      tags:
+      - Products - Categories
+    put:
+      consumes:
+      - application/json
+      description: Updates a product category by idin database.
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/attachment.updateProductCategory'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_ProductCategory'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Change a Product Category
+      tags:
+      - Products - Categories
+  /projects:
+    get:
+      description: Get all projects from database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseMany-array_entities_Project'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Show All Projects
+      tags:
+      - Projects
+    post:
+      consumes:
+      - application/json
+      description: Creates a new project in database.
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/attachment.insertProject'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_Project'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Create a Project
+      tags:
+      - Projects
+  /projects/{id}:
+    delete:
+      description: Removes a project by idfrom database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseNone'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Delete a Project
+      tags:
+      - Projects
+    get:
+      description: Get a project by idin database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_Person'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Show a Project
+      tags:
+      - Projects
+    put:
+      consumes:
+      - application/json
+      description: Updates a project by idin database.
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/attachment.updateProject'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helpers.ResponseOne-entities_Project'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helpers.Error'
+      summary: Change a Project
+      tags:
+      - Projects
+schemes:
+- http
+- https
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

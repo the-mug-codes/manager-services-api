@@ -1,0 +1,31 @@
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Documents
+README.md
+LICENSE
+Dockerfile
+.gitignore
+
+# Dotenv
+.env
+.env.model
+
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Credentials
+*/**/*.crt
+*/**/*.key
+
+# Local bash files
+*.local*.*h

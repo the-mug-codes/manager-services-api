@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      font-family: sans-serif;
+    "
+  >
+    <table style="width: 100%; min-height: 100%" cellspacing="0">
+      <tr style="background-color: #efefef; padding: 1rem">
+        <td style="font-size: small" width="80%" colspan="2">
+          <div style="display: inline-block; padding: 1rem">
+            <img
+              style="width: auto; height: 2rem"
+              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAyIiBoZWlnaHQ9IjI4MSIgdmlld0JveD0iMCAwIDUwMiAyODEiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMzA0LjY5OCA3Mi4xNTIxQzI5NS40MzUgNzYuMTUyMyAyODYuODYzIDcxLjcxOCAyODQuOTYyIDYyLjAzNzRDMjg0LjYyMyA2MC4zMTI1IDI4NC40NjggNTguNTI1IDI4NC40NjIgNTYuNzY1OEMyODQuNDIyIDQzLjM4MzggMjg0LjQyMiAzMC4wMDE1IDI4NC40NTEgMTYuNjE5NUMyODQuNDYxIDEyLjE2MDIgMjg1LjE3MiA3LjgzNDc3IDI4OC4yNDIgNC4zNTI3NkMyOTIuMDAyIDAuMDg4MjY2MyAyOTYuODggLTAuNzIwMDQ3IDMwMi4xNDUgMC41NDQwMjhDMzA3LjQwNSAxLjgwNzAyIDMxMC4xODQgNS42MjU0MyAzMTEuNTUyIDEwLjU5NDdDMzExLjkzNSAxMS45ODM5IDMxMi4xMjMgMTMuNDcxIDMxMi4xMjYgMTQuOTEzN0MzMTIuMTMyIDE3LjU4NjggMzEyLjEzOSAyMC4yNiAzMTIuMTQ3IDIyLjkzMzJWMjIuOTMzNUMzMTIuMTgyIDM1LjAyNTggMzEyLjIxNyA0Ny4xMTg2IDMxMi4wNTkgNTkuMjA4N0MzMTEuOTg4IDY0LjYxMDEgMzA5Ljc0MyA2OS4xODAzIDMwNC42OTggNzIuMTUyMVpNMjM3Ljc5NyA0Ni4yMkMyMzcuNzk4IDQ2LjM5OTggMjM3LjggNDYuNjY5OSAyMzcuODAyIDQ3LjA2MzRDMjM3Ljc5NSA0OS4xNjMxIDIzNy43OSA1MC4xNzc3IDIzNy43ODcgNTAuNjI3NUMyMzcuNzg0IDUwLjQ4MjUgMjM3Ljc4MyA1MC42OTI2IDIzNy43ODIgNTAuODMzOEMyMzcuNzgyIDUwLjk3NTEgMjM3Ljc4NCA1MS4wNDc2IDIzNy43ODcgNTAuNjI3NUMyMzcuNzkxIDUwLjg3NjcgMjM3Ljc5OSA1Mi4xNzQ3IDIzNy44MDkgNTYuNjczMUMyMzcuODE5IDYxLjEzMjQgMjM4LjUzIDY1LjQ1NzggMjQxLjYgNjguOTM5OEMyNDUuMzYgNzMuMjA0MyAyNTAuMjM4IDc0LjAxMjYgMjU1LjUwMiA3Mi43NDg1QzI2MC43NjIgNzEuNDg1NSAyNjMuNTQxIDY3LjY2NzEgMjY0LjkxIDYyLjY5NzhDMjY1LjI5MiA2MS4zMDg2IDI2NS40OCA1OS44MjE2IDI2NS40ODMgNTguMzc4OUMyNjUuNDk2IDUyLjU2MTUgMjY1LjUyOCA1MS45NDk4IDI2NS41NTEgNTIuNDQyQzI2NS41NzEgNTMuNjk3MiAyNjUuNTc4IDUzLjgzNTkgMjY1LjU3NiA1My41OTE0QzI2NS41NzQgNTMuMzQ2OSAyNjUuNTY0IDUyLjcxOTIgMjY1LjU1MSA1Mi40NDJDMjY1LjUzOSA1MS42ODkgMjY1LjUyMiA1MC41MzQzIDI2NS40OTkgNDguODE5NkMyNjUuNTI4IDQ2LjY2MDggMjY1LjU0OCA0NS4yNjkgMjY1LjU2MiA0NC40MDU1QzI2NS41NzUgNDQuMTI4MyAyNjUuNTg1IDQzLjUwMDcgMjY1LjU4NyA0My4yNTYyQzI2NS41ODkgNDMuMDExNyAyNjUuNTgyIDQzLjE1MDMgMjY1LjU2MiA0NC40MDU1QzI2NS41MzkgNDQuODk3NyAyNjUuNTA2IDQ0LjI4NjEgMjY1LjQ5NCAzOC40Njg3QzI2NS40OTEgMzcuMDI1OSAyNjUuMzAzIDM1LjUzODkgMjY0LjkyIDM0LjE0OTdDMjYzLjU1MiAyOS4xODA0IDI2MC43NzMgMjUuMzYyIDI1NS41MTMgMjQuMDk5QzI1MC4yNDggMjIuODM0OSAyNDUuMzcgMjMuNjQzMiAyNDEuNjEgMjcuOTA3N0MyMzguNTQgMzEuMzg5NyAyMzcuODI5IDM1LjcxNTIgMjM3LjgxOSA0MC4xNzQ0QzIzNy44MDkgNDQuNjcyOCAyMzcuODAxIDQ1Ljk3MDggMjM3Ljc5NyA0Ni4yMlpNMjM3Ljc5MyA0Ni4wMTM3QzIzNy43OTMgNDYuMTU1IDIzNy43OTQgNDYuMzY1IDIzNy43OTcgNDYuMjJDMjM3Ljc5NCA0NS43OTk5IDIzNy43OTMgNDUuODcyNCAyMzcuNzkzIDQ2LjAxMzdaTTcxLjg4MjMgODQuNDc3M0M1Mi42MjY5IDc3LjY3NDkgMzUuMzMxMiA4MS45Mjg3IDE5LjQ4MTIgOTQuMzc2NEM5LjEwMTIzIDEwMy4zNzYgMi4zNTkyNyAxMTQuMzY2IDAuNjc5Nzc3IDEyNy45MDhDMC4wMDE5OTA4NCAxMzMuMzc0IDAuMDI0MzIxNiAxMzguOTM1IDAuMDQ2NTkxNyAxNDQuNDgyQzAuMDUyMTc3IDE0NS44NzMgMC4wNTc3NTg2IDE0Ny4yNjMgMC4wNTIyOTA2IDE0OC42NTFDLTAuMDE5OTAxNyAxNjYuOTcgLTAuMDExNzc0IDE4NS4yOSAwLjA0Mjc0ODMgMjAzLjYwOUMwLjA3NjgyNjQgMjE1LjA1OCAxMS4xMzI2IDIyMy4xMDMgMjEuNjQ4NSAyMTkuNDMzQzI4LjE0MTMgMjE3LjE2NyAzMi4yNTA1IDIxMS4yMzkgMzIuMjU3MSAyMDMuOTY0QzMyLjI2NDkgMTk1LjQ1NSAzMi4yNTg4IDE4Ni45NDcgMzIuMjUyNyAxNzguNDM4QzMyLjI0MjIgMTYzLjkzMiAzMi4yMzE4IDE0OS40MjYgMzIuMjkwNCAxMzQuOTJDMzIuMzU0NSAxMTkuMDU2IDQ2LjQxMjMgMTA4LjMxNSA2MS43MzQyIDExMi4yNDNDNzEuODQ5MSAxMTQuODM2IDc4LjM3ODIgMTIzLjY2NyA3OC4zOTI5IDEzNC45MzVDNzguNDA3NyAxNDYuMTkgNzguNDA1MSAxNTcuNDQ2IDc4LjQwMjUgMTY4LjcwMUM3OC4zOTk4IDE4MC40NiA3OC4zOTcxIDE5Mi4yMiA3OC40MTQyIDIwMy45NzlDNzguNDI2NiAyMTIuNTggODUuNDg2NCAyMTkuODggOTQuMDQxMyAyMjAuMjg0QzEwMy4yNTcgMjIwLjcyIDExMC41MDQgMjEzLjU0NyAxMTAuNjA3IDIwMy43NjVDMTEwLjY1OCAxOTguOTkzIDExMC42NDYgMTk0LjIyMiAxMTAuNjM0IDE4OS40NUwxMTAuNjM0IDE4OS40NDRDMTEwLjYyOCAxODYuOTA1IDExMC42MjEgMTg0LjM2NiAxMTAuNjI1IDE4MS44MjhDMTEwLjYzIDE3Ny4yNTUgMTEwLjYyNCAxNzIuNjgzIDExMC42MTcgMTY4LjExQzExMC42MDEgMTU2LjUxOSAxMTAuNTg1IDE0NC45MjcgMTEwLjc2NCAxMzMuMzM4QzExMC44ODcgMTI1LjQxMiAxMTQuNzcxIDExOS4xOTIgMTIxLjQ3MiAxMTUuMDExQzEyOS4xNTkgMTEwLjIxNSAxMzcuMjQ2IDExMC4xNTkgMTQ1LjE1NSAxMTQuMzY3QzE1My4wMyAxMTguNTU4IDE1Ni45MjMgMTI1LjQzMiAxNTYuOTQ4IDEzNC4zMjRDMTU2Ljk4NiAxNDcuODg5IDE1Ni45ODEgMTYxLjQ1NCAxNTYuOTc2IDE3NS4wMTlDMTU2Ljk3MyAxODQuNjIyIDE1Ni45NjkgMTk0LjIyNiAxNTYuOTgxIDIwMy44M0MxNTYuOTkxIDIxMi42NjQgMTYzLjcyMyAyMTkuNzc0IDE3Mi40MzEgMjIwLjI3OEMxODEuNzY1IDIyMC44MTkgMTg5LjIwNiAyMTMuNTYgMTg5LjIyMiAyMDMuNzUyQzE4OS4yNiAxODAuOTY4IDE4OS4yNSAxNTguMTg0IDE4OS4yMSAxMzUuNEMxODkuMjA2IDEzMy4xIDE4OS4wNCAxMzAuNzcxIDE4OC42NTYgMTI4LjUwNUMxODUuMjc0IDEwOC41MzkgMTc0LjYxIDkzLjkwMzMgMTU1LjkzOCA4NS44ODZDMTM5LjExNCA3OC42NjE2IDEyMi41NDkgNzkuMzA2NSAxMDcuMDU1IDg5Ljk5MjlDMTAxLjg3NSA5My41NjU3IDk3Ljc5MjggOTguMjI5IDk0LjM2MTkgMTAzLjY3N0M5NC4xOTkgMTAzLjQyMyA5NC4wNDkyIDEwMy4xODkgOTMuOTA4MSAxMDIuOTY4QzkzLjYyOTMgMTAyLjUzMiA5My4zODQgMTAyLjE0OSA5My4xMzcyIDEwMS43NjdDODcuOTI4MyA5My42OTY3IDgwLjk1NDIgODcuNjgyMiA3MS44ODIzIDg0LjQ3NzNaTTM2MS4zMjkgMTQ0LjQzOUMzNTkuMTAxIDE3My4zNjQgMzcxLjA1MiAxOTUuNTU3IDM5NS45MzQgMjEwLjg4OEM0MTguNDAyIDIyMy4wMiA0NDEuMDU5IDIyMy4zMDIgNDYzLjk5IDIxMi44NTdDNDY5LjA5NCAyMTkuNTM2IDQ2OS4yNjkgMjI4LjM4NiA0NjQuMTk0IDIzNC44ODFDNDU4LjQwNSAyNDIuMjkyIDQ1MC41NjggMjQ0LjY0MyA0NDEuNDQzIDI0My42NzJDNDM5LjM0OCAyNDMuNDQ5IDQzNy4yNTUgMjQzLjE4OSA0MzUuMTYyIDI0Mi45M0w0MzUuMTYyIDI0Mi45MjlDNDI3LjE4OCAyNDEuOTQgNDE5LjIxMyAyNDAuOTUgNDExLjExMiAyNDEuOTg4QzQwMi42NTkgMjQzLjA3IDM5NC41MTcgMjQ1LjExMyAzODcuMDE0IDI0OS4yNTNDMzgxLjcwNCAyNTIuMTgyIDM3OC43NDMgMjU2LjY2MSAzNzguNTAzIDI2Mi44MjVDMzc4LjA3NiAyNzMuNzY3IDM4OC45ODkgMjg1LjMwNCA0MDIuMTYxIDI3OC43MTNDNDAzLjkyNyAyNzcuODI5IDQwNS44ODEgMjc3LjI4MSA0MDcuOCAyNzYuNzQzTDQwOC4wMTkgMjc2LjY4MkM0MTcuNzUzIDI3My45NSA0MjcuNTMxIDI3NS4wMTYgNDM3LjMxNiAyNzYuNDA2QzQ0NS40MTUgMjc3LjU1NyA0NTMuNTI1IDI3OC4xODggNDYxLjY2MiAyNzYuNjU2QzQ3Mi42MTggMjc0LjU5MyA0ODIuMTUgMjY5Ljk0MyA0ODkuNzcgMjYxLjYwN0M1MDMuNjkzIDI0Ni4zNzYgNTA0LjQ5NyAyMTkuNzk2IDQ5NC45MjggMjAzLjQ3OEM0OTMuNDgzIDIwMS4wMTQgNDkxLjc4NSAxOTguNjk5IDQ5MC4wNjYgMTk2LjM1NUw0OTAuMDY2IDE5Ni4zNTRMNDkwLjA2NiAxOTYuMzU0TDQ5MC4wNjUgMTk2LjM1NEM0ODkuMjY3IDE5NS4yNjYgNDg4LjQ2NSAxOTQuMTcxIDQ4Ny42ODEgMTkzLjA1M0M0ODcuNzU5IDE5Mi45NDMgNDg3Ljg0IDE5Mi44MyA0ODcuOTIyIDE5Mi43MTZDNDg4LjAzNSAxOTIuNTYgNDg4LjE1IDE5Mi40IDQ4OC4yNjggMTkyLjIzN0w0ODguMjY5IDE5Mi4yMzVMNDg4LjI3MSAxOTIuMjMzQzQ4OC43MzQgMTkxLjU5MyA0ODkuMjMzIDE5MC45MDQgNDg5LjcwNCAxOTAuMTk2QzUwMC42OSAxNzMuNzA5IDUwNC42MTkgMTU1LjY2MiA1MDAuMjU0IDEzNi4zNDJDNDkxLjUzNSA5Ny43NTI1IDQ1NC4xODEgNzQuNDkxMiA0MTUuNTU4IDgzLjE1NjVDMzg2LjYzNSA4OS42NDU2IDM2My41OTQgMTE1LjA0MiAzNjEuMzI5IDE0NC40MzlaTTQ1OS40IDE3OC4zMDJDNDU0LjA0NiAxODQuMTY5IDQ0Ny4yNjcgMTg3LjU3OCA0MzkuNDk4IDE4OS4wN0M0MjkuNzIyIDE5MC43NjIgNDIwLjcwNiAxODkuNjQ4IDQxMi4zNjEgMTg0LjkxOEM0MDIuODA2IDE3OS41MDIgMzk2Ljk2IDE3MS4yMDkgMzk0LjU4NiAxNjAuNTUxQzM5Mi4wMTggMTQ5LjAyOCAzOTMuMzY2IDEzNy45NDUgNDAwLjA1NSAxMjguMDg3QzQwOS4yMzkgMTE0LjU1IDQyMi40NzcgMTA5LjYwMyA0MzguMzM5IDExMi4xMDZDNDU1LjI3NSAxMTQuNzc5IDQ2Ny4yMDggMTI3LjcxNCA0NjkuMjIgMTQ0LjczMUM0NzAuNzA5IDE1Ny4zMTUgNDY4LjEyNSAxNjguNzQzIDQ1OS40IDE3OC4zMDJaTTM0Mi4xOTYgMTE5LjE2QzM0Mi4xOTUgMTIyLjg3NCAzNDIuMiAxMjYuNTY1IDM0Mi4yMDYgMTMwLjI0MVYxMzAuMjQ3QzM0Mi4yMTcgMTM4LjQ1MyAzNDIuMjI5IDE0Ni41ODMgMzQyLjE3NCAxNTQuNzEzQzM0Mi4wNjggMTcwLjMzNSAzMzcuNTAxIDE4NC41MDggMzI3Ljk3MyAxOTYuOTYzQzMwNC4yNTIgMjI3Ljk3NCAyNTguMjMxIDIzMC44OTcgMjMwLjk1MSAyMDMuMDEzQzIxNy45MDcgMTg5LjY3OSAyMTEuODI4IDE3My4zMjQgMjExLjYyIDE1NC44MjlDMjExLjQzMSAxMzcuODk1IDIxMS40OTggMTIwLjk1OCAyMTEuNTY1IDEwNC4wMjJWMTA0LjAyVjEwNC4wMTlDMjExLjU3MiAxMDIuMjU2IDIxMS41NzkgMTAwLjQ5MyAyMTEuNTg1IDk4LjczQzIxMS42MTcgOTAuMjkwNSAyMTguMDc0IDgzLjQ1NzcgMjI2LjQxOCA4Mi43MjJDMjM0LjY2MiA4MS45OTUxIDI0Mi4xMDkgODcuNjY1IDI0My41OCA5NS44NTg1QzI0My43OTEgOTcuMDMwNiAyNDMuNzkgOTguMjQ5MSAyNDMuNzg5IDk5LjQ1MTdWOTkuNDUxOUMyNDMuNzg5IDk5LjU1NjggMjQzLjc4OSA5OS42NjE2IDI0My43ODkgOTkuNzY2M0MyNDMuNzk0IDEwNy4yNDUgMjQzLjc5MyAxMTQuNzIzIDI0My43OTIgMTIyLjIwMkMyNDMuNzkgMTMzLjI2OSAyNDMuNzg4IDE0NC4zMzcgMjQzLjgwNyAxNTUuNDA0QzI0My44MjQgMTY1LjYxOSAyNDYuNzYyIDE3NC43MjkgMjUzLjk1MiAxODIuMjg2QzI2OC42MDIgMTk3LjY4IDMwMC41NjQgMTk1LjIgMzA4LjMyNSAxNjguMzUxQzMwOS42MDggMTYzLjkxNCAzMTAuMTU4IDE1OS4xMyAzMTAuMjEgMTU0LjQ5N0MzMTAuMzM4IDE0My4wMDYgMzEwLjMyMyAxMzEuNTE0IDMxMC4zMDggMTIwLjAyMkMzMTAuMjk4IDExMi44OTEgMzEwLjI4OSAxMDUuNzYgMzEwLjMxNCA5OC42MjlDMzEwLjM1NCA4Ny4xNjk3IDMyMi4wOTcgNzkuNDA0NyAzMzIuNTk0IDgzLjkzMjNDMzM4LjYyNyA4Ni41MzQ1IDM0MS45OTIgOTEuMjg0MSAzNDIuMTQ3IDk3LjkyMTZDMzQyLjI2MSAxMDIuNzc5IDM0Mi4yMzggMTA3LjYzOSAzNDIuMjE1IDExMi41NzdWMTEyLjU4TDM0Mi4yMTUgMTEyLjU5MkMzNDIuMjA1IDExNC43NjQgMzQyLjE5NSAxMTYuOTUyIDM0Mi4xOTYgMTE5LjE2WiIgZmlsbD0iIzAwMDgxNCIvPgo8L3N2Zz4K"
+            />
+          </div>
+          <p
+            style="
+              display: inline-block;
+              margin: 0;
+              vertical-align: sub;
+              white-space: nowrap;
+            "
+          >
+            The Mug Codes - http://the.mug.codes<br />Koditec Inova Simples
+            (I.S.) - 46.415.877/0001-44<br />
+            Avenida Sete de Setembro, 5388, Batel, Curitiba-PR
+          </p>
+        </td>
+        <td style="padding: 1rem; text-align: right" width="20%">
+          <p style="margin: 0; white-space: nowrap">
+            <b>Data: </b>{{.ParseDate .CreatedAt}}
+          </p>
+          <p style="margin: 0; white-space: nowrap; margin-top: 0, 5rem">
+            <b>Código: </b>{{.Code}}
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding-right: 1rem" width="75%" colspan="2">
+          <p style="margin: 0; font-weight: normal; padding-top: 1rem">
+            <b style="display: block">
+              {{.PersonDocument}} - {{.PersonName}}
+            </b>
+            <small style="display: block; font-size: smaller">
+              {{.PersonID}}
+            </small>
+            {{.PersonAddress}}
+          </p>
+        </td>
+        <td
+          style="
+            margin: 0;
+            background-color: #444;
+            color: #fff;
+            font-weight: normal;
+            padding: 1rem;
+          "
+          width="20%"
+        >
+          <table style="width: 100%" cellspacing="0">
+            <tr>
+              <td style="padding-right: 1rem" width="1%">
+                <h3 style="margin: 0">Vencimento</h3>
+              </td>
+              <td style="text-align: right" width="99%">
+                {{.ParseDate .DueDate}}
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-right: 1rem" width="1%">
+                <h3 style="margin: 0">Valor</h3>
+              </td>
+              <td style="text-align: right" width="99%">
+                {{.ParseMoney .TotalAmountValue}}
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align: top" width="75%" colspan="2">
+          <table style="width: 100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th style="width: 5%; text-align: left; padding: 0.5rem 0">
+                  Código
+                </th>
+                <th style="text-align: left; padding: 0.5rem 1rem">Item</th>
+                <th style="width: 5%; text-align: right; padding: 0.5rem 0">
+                  Valor
+                </th>
+                <th style="text-align: center; width: 5%; padding: 0.5rem 0">
+                  Qnt.
+                </th>
+                <th style="width: 5%; text-align: right; padding: 0.5rem 0">
+                  Total
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {{ range .Items }}
+              <tr>
+                <td
+                  style="
+                    border-top: 1px solid #000;
+                    white-space: nowrap;
+                    font-size: small;
+                  "
+                >
+                  {{.Code}}
+                </td>
+                <td style="border-top: 1px solid #000; padding: 0.5rem 1rem">
+                  {{.Title}}
+                  <small style="display: block; font-size: smaller">
+                    {{.Description}}
+                  </small>
+                </td>
+                <td
+                  style="
+                    border-top: 1px solid #000;
+                    text-align: right;
+                    white-space: nowrap;
+                  "
+                >
+                  {{.ParseMoney .PriceValue}}
+                </td>
+                <td
+                  style="
+                    border-top: 1px solid #000;
+                    text-align: center;
+                    padding: 0 1rem;
+                    white-space: nowrap;
+                  "
+                >
+                  {{.Quantity}}
+                </td>
+                <td
+                  style="
+                    border-top: 1px solid #000;
+                    text-align: right;
+                    white-space: nowrap;
+                  "
+                >
+                  {{.ParseMoney .TotalAmount}}
+                </td>
+              </tr>
+              {{ end }}
+            </tbody>
+          </table>
+          {{if .WarningComments}}
+          <h4
+            style="
+              margin: 0;
+              background-color: #444;
+              color: #fff;
+              font-weight: normal;
+              padding: 1rem;
+            "
+          >
+            <b style="display: block">Atenção:</b>{{.WarningComments}} {{if
+            .LateInvoices}} <br />Para pagar faturas em aberto, use a própria
+            fatura atrasada. Se não a tiver, acesse sua área do cliente ou
+            contate nossa central para uma nova via. Haverá juros de até 1% ao
+            mês e multa de até 2%. Juros e multas são calculados após o
+            pagamento e incluídos na próxima fatura. .{{end}}
+          </h4>
+          {{end}}
+          <p
+            style="
+              margin: 0;
+              font-weight: normal;
+              font-size: small;
+              padding-top: 1rem;
+            "
+          >
+            <b style="display: block; font-weight: bold">Observações:</b
+            >{{.Comments}} {{if .DiscountComments}} {{.DiscountComments}}{{end}}
+            {{if .ExtraAmountComments}} {{.ExtraAmountComments}}{{end}} {{if
+            .ContractID}} Contrato {{.ContractID}}.{{end}}
+          </p>
+          {{if .PixCopyPaste}}
+          <p
+            style="
+              margin: 0;
+              font-weight: normal;
+              padding-top: 1rem;
+              font-family: monospace;
+              font-size: smaller;
+            "
+          >
+            <b style="display: block">PIX Copia e cola:</b>{{.PixCopyPaste}}
+          </p>
+          {{end}}
+        </td>
+        <td style="padding: 1rem" width="20%">
+          <table style="width: 100%; margin-bottom: 1rem" cellspacing="0">
+            <tr>
+              <td style="padding-right: 1rem" width="1%">
+                <b style="margin-right: auto">Subtotal</b>
+              </td>
+              <td style="text-align: right" width="99%">
+                {{.ParseMoney .AmountValue}}
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-right: 1rem" width="1%">
+                <b style="margin-right: auto">Acéscimos</b>
+              </td>
+              <td style="text-align: right" width="99%">
+                {{.ParseMoney .ExtraAmountValue}}
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-right: 1rem" width="1%">
+                <b style="margin-right: auto">Descontos</b>
+              </td>
+              <td style="text-align: right" width="99%">
+                {{.ParseMoney .DiscountValue}}
+              </td>
+            </tr>
+          </table>
+          {{if .GetQrCode}}
+          <div style="margin: 1rem 0; margin-top: 0">
+            <img
+              style="width: 100%; height: auto"
+              src="data:image/png;base64,{{.GetQrCode}}"
+            />
+            <p style="margin: 0; font-size: small">
+              Utilize o QR Code ou código de cópia e cola para realizar o
+              pagamento da sua fatura via Pix. Não é necessário enviar
+              comprovantes de pagamento, pois a baixa da fatura ocorre
+              automaticamente, podendo levar até 24 horas.
+            </p>
+          </div>
+          {{end}}
+          <p style="margin: 0; font-size: small">
+            <b style="display: block; font-size: medium">Importante:</b>A
+            quitação desta fatura não salda débitos anteriores. Para garantir a
+            regularização completa, é importante verificar os pagamentos
+            anteriores. Esteja ciente dos prazos de pagamento nesta fatura para
+            evitar encargos adicionais. Em situações de atraso no pagamento,
+            serão aplicados juros de mora de até 1% ao mês. Adicionalmente, uma
+            multa de até 2% do valor total da fatura poderá ser cobrada caso o
+            pagamento não seja realizado até a data de vencimento. É válido
+            ressaltar que quaisquer juros e moras resultantes de faturas
+            atrasadas, após o pagamento das mesmas, serão calculados e incluídos
+            na próxima fatura pendente. Em caso de dúvidas, entre em contato com
+            a central de atendimento.
+          </p>
+          <p style="margin: 1rem 0; font-size: small">
+            <b style="display: block; font-size: medium"
+              >Central de Atendimento:</b
+            >contato@the.mug.codes<br />+55 (41) 3891-0372
+          </p>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
