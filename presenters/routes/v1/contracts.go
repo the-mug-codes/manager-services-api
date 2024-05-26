@@ -9,10 +9,10 @@ import (
 func Contracts(router *gin.RouterGroup) {
 	contractsRoute := router.Group("contracts")
 	{
-		contractsRoute.POST("", controllerContracts.Insert)
-		contractsRoute.GET("", controllerContracts.ReadAll)
-		contractsRoute.GET(":id", controllerContracts.Read)
-		contractsRoute.PUT(":id", controllerContracts.Update)
+		contractsRoute.POST("", middleware.Protected(nil, nil), controllerContracts.Insert)
+		contractsRoute.GET("", middleware.Protected(nil, nil), controllerContracts.ReadAll)
+		contractsRoute.GET(":id", middleware.Protected(nil, nil), controllerContracts.Read)
+		contractsRoute.PUT(":id", middleware.Protected(nil, nil), controllerContracts.Update)
 		contractsRoute.DELETE(":id", middleware.Protected(nil, nil), controllerContracts.Delete)
 	}
 }

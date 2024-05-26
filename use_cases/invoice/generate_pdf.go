@@ -5,7 +5,7 @@ import (
 )
 
 func GeneratePDF(html entity.InvoiceHtml, pdf entity.InvoicePDF, invoice entity.Invoice) (file *[]byte, err error) {
-	htmlString, err := html.Generate("invoice", invoice)
+	htmlString, err := html.Generate("document", invoice)
 	if err != nil {
 		return file, err
 	}

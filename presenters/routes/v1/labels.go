@@ -9,10 +9,10 @@ import (
 func Labels(router *gin.RouterGroup) {
 	labelsRoute := router.Group("labels")
 	{
-		labelsRoute.POST("", controllerLabels.Insert)
-		labelsRoute.GET("", controllerLabels.ReadAll)
-		labelsRoute.GET(":id", controllerLabels.Read)
-		labelsRoute.PUT(":id", controllerLabels.Update)
+		labelsRoute.POST("", middleware.Protected(nil, nil), controllerLabels.Insert)
+		labelsRoute.GET("", middleware.Protected(nil, nil), controllerLabels.ReadAll)
+		labelsRoute.GET(":id", middleware.Protected(nil, nil), controllerLabels.Read)
+		labelsRoute.PUT(":id", middleware.Protected(nil, nil), controllerLabels.Update)
 		labelsRoute.DELETE(":id", middleware.Protected(nil, nil), controllerLabels.Delete)
 	}
 }

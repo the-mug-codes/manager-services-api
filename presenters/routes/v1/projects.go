@@ -9,10 +9,10 @@ import (
 func Projects(router *gin.RouterGroup) {
 	projectsRoute := router.Group("projects")
 	{
-		projectsRoute.POST("", controllerProjects.Insert)
-		projectsRoute.GET("", controllerProjects.ReadAll)
-		projectsRoute.GET(":id", controllerProjects.Read)
-		projectsRoute.PUT(":id", controllerProjects.Update)
+		projectsRoute.POST("", middleware.Protected(nil, nil), controllerProjects.Insert)
+		projectsRoute.GET("", middleware.Protected(nil, nil), controllerProjects.ReadAll)
+		projectsRoute.GET(":id", middleware.Protected(nil, nil), controllerProjects.Read)
+		projectsRoute.PUT(":id", middleware.Protected(nil, nil), controllerProjects.Update)
 		projectsRoute.DELETE(":id", middleware.Protected(nil, nil), controllerProjects.Delete)
 	}
 }

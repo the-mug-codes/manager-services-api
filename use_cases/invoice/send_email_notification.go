@@ -7,11 +7,11 @@ import (
 )
 
 func SendEmailNotification(sendGrid entity.InvoiceEmail, html entity.InvoiceHtml, pdf entity.InvoicePDF, invoice entity.Invoice) (err error) {
-	htmlString, err := html.Generate("invoice", invoice)
+	htmlString, err := html.Generate("document", invoice)
 	if err != nil {
 		return err
 	}
-	emailHtmlString, err := html.Generate("invoice_email", invoice)
+	emailHtmlString, err := html.Generate("email", invoice)
 	if err != nil {
 		return err
 	}

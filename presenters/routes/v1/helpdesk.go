@@ -14,15 +14,15 @@ func HelpDesk(router *gin.RouterGroup) {
 		{
 			messages := helpdeskRoute.Group("messages")
 			{
-				messages.POST("", controllerTicketsMessages.Insert)
-				messages.GET("", controllerTicketsMessages.ReadAll)
-				messages.GET(":id/messages", controllerTicketsMessages.ReadAllByTicket)
-				messages.GET(":id", controllerTicketsMessages.Read)
+				messages.POST("", middleware.Protected(nil, nil), controllerTicketsMessages.Insert)
+				messages.GET("", middleware.Protected(nil, nil), controllerTicketsMessages.ReadAll)
+				messages.GET(":id/messages", middleware.Protected(nil, nil), controllerTicketsMessages.ReadAllByTicket)
+				messages.GET(":id", middleware.Protected(nil, nil), controllerTicketsMessages.Read)
 			}
-			ticketsRoute.POST("", controllerTickets.Insert)
-			ticketsRoute.GET("", controllerTickets.ReadAll)
-			ticketsRoute.GET(":id", controllerTickets.Read)
-			ticketsRoute.PUT(":id", controllerTickets.Update)
+			ticketsRoute.POST("", middleware.Protected(nil, nil), controllerTickets.Insert)
+			ticketsRoute.GET("", middleware.Protected(nil, nil), controllerTickets.ReadAll)
+			ticketsRoute.GET(":id", middleware.Protected(nil, nil), controllerTickets.Read)
+			ticketsRoute.PUT(":id", middleware.Protected(nil, nil), controllerTickets.Update)
 			ticketsRoute.DELETE(":id", middleware.Protected(nil, nil), controllerTickets.Delete)
 		}
 	}

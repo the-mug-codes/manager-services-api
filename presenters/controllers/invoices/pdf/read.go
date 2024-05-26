@@ -39,7 +39,7 @@ func Read(context *gin.Context) {
 		helper.ErrorResponse(context, 400, "cannot read", err.Error())
 		return
 	}
-	htmlConnection := html.Html[entity.Invoice]("templates")
+	htmlConnection := html.Html[entity.Invoice]("templates/invoice")
 	pdfConnection := pdf.Pdf("tmp")
 	file, err := invoice.GeneratePDF(htmlConnection, pdfConnection, *invoiceData)
 	if err != nil {

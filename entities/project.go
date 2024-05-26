@@ -9,6 +9,16 @@ import (
 	"gorm.io/gorm"
 )
 
+type Repositories struct {
+	ID        uuid.UUID       `gorm:"type:uuid;primary_key" json:"id"`
+	ProjectID uuid.UUID       `gorm:"type:uuid" json:"project_id"`
+	Name      string          `json:"name" binding:"required"`
+	URL       string          `gorm:"index;unique" json:"url" binding:"required"`
+	CreatedAt time.Time       `gorm:"autoCreateTime" json:"created_at"`
+	UpdatedAt time.Time       `gorm:"autoUpdateTime" json:"updated_at"`
+	DeletedAt *gorm.DeletedAt `gorm:"index" json:"deleted_at,omitempty"`
+}
+
 type Project struct {
 	ID           uuid.UUID       `gorm:"type:uuid;primary_key" json:"id"`
 	Kind         string          `json:"kind" binding:"required"`
@@ -21,6 +31,7 @@ type Project struct {
 	Comments     *string         `json:"comments"`
 	Deliveries   pq.StringArray  `gorm:"type:text[]" json:"deliveries"`
 	DueDate      *time.Time      `json:"due_date"`
+	Repositories []*Repositories `json:"repositories"`
 	CreatedAt    time.Time       `gorm:"autoCreateTime" json:"created_at"`
 	UpdatedAt    time.Time       `gorm:"autoUpdateTime" json:"updated_at"`
 	DeletedAt    *gorm.DeletedAt `gorm:"index" json:"deleted_at,omitempty"`

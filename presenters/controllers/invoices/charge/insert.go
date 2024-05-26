@@ -122,7 +122,7 @@ func Insert(context *gin.Context) {
 	}
 	if requestBody.Notification.Email {
 		sendGridConnection := sendGrid.Connect[entity.EmailAttachment]("The Mug Codes", "notification@the.mug.codes", "contato@the.mug.codes")
-		htmlConnection := html.Html[entity.Invoice]("templates")
+		htmlConnection := html.Html[entity.Invoice]("templates/invoice")
 		pdfConnection := pdf.Pdf("tmp")
 		err := invoice.SendEmailNotification(sendGridConnection, htmlConnection, pdfConnection, *dataToInsert)
 		if err != nil {
