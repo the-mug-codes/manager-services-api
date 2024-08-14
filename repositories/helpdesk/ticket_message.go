@@ -3,9 +3,9 @@ package repositories
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	entity "github.com/kodit-tecnologia/service-manager/entities"
 	database "github.com/the-mug-codes/adapters-service-api/database"
 	utils "github.com/the-mug-codes/adapters-service-api/database/utils"
+	entity "github.com/the-mug-codes/service-manager-api/entities"
 	"gorm.io/gorm"
 )
 

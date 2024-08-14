@@ -6,15 +6,15 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/google/uuid"
-	messageBird "github.com/kodit-tecnologia/service-manager/adapters/messagebird"
-	pix "github.com/kodit-tecnologia/service-manager/adapters/pix"
-	sendGrid "github.com/kodit-tecnologia/service-manager/adapters/sendgrid"
-	entity "github.com/kodit-tecnologia/service-manager/entities"
-	repository "github.com/kodit-tecnologia/service-manager/repositories"
-	invoice "github.com/kodit-tecnologia/service-manager/use_cases/invoice"
 	html "github.com/the-mug-codes/adapters-service-api/html"
 	pdf "github.com/the-mug-codes/adapters-service-api/pdf"
 	helper "github.com/the-mug-codes/adapters-service-api/server/helpers"
+	messageBird "github.com/the-mug-codes/service-manager-api/adapters/messagebird"
+	pix "github.com/the-mug-codes/service-manager-api/adapters/pix"
+	sendGrid "github.com/the-mug-codes/service-manager-api/adapters/sendgrid"
+	entity "github.com/the-mug-codes/service-manager-api/entities"
+	repository "github.com/the-mug-codes/service-manager-api/repositories"
+	invoice "github.com/the-mug-codes/service-manager-api/use_cases/invoice"
 )
 
 type insertCharge struct {

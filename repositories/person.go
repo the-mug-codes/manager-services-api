@@ -3,9 +3,9 @@ package repositories
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	entity "github.com/kodit-tecnologia/service-manager/entities"
 	database "github.com/the-mug-codes/adapters-service-api/database"
 	utils "github.com/the-mug-codes/adapters-service-api/database/utils"
+	entity "github.com/the-mug-codes/service-manager-api/entities"
 	"gorm.io/gorm"
 )
 
@@ -29,7 +29,7 @@ func (connection *personRepository) Insert(personData *entity.Person) (insertedP
 	if err != nil {
 		return insertedPerson, err
 	}
-	err = connection.database.Scopes(utils.FilterDataOwnerRestriction(connection.context, "id")).Preload("Addresses").Preload("Emails").Preload("Phones").First(&insertedPerson, personData.ID).Error
+	err = connection.database.Scopes(utils.FilterDataOwnerRestriction(connection.context, "id")).Preload("Extras").Preload("Addresses").Preload("Emails").Preload("Phones").First(&insertedPerson, personData.ID).Error
 	if err != nil {
 		return insertedPerson, err
 	}
@@ -42,7 +42,7 @@ func (connection *personRepository) ReadAll(page int, pageSize int) (person *[]e
 	if err != nil {
 		return person, pagination, err
 	}
-	err = connection.database.Scopes(utils.FilterDataOwnerRestriction(connection.context, "id")).Scopes(utils.Paginate(page, pageSize, totalRegisters, pagination)).Preload("Addresses").Preload("Emails").Preload("Phones").Find(&person).Error
+	err = connection.database.Scopes(utils.FilterDataOwnerRestriction(connection.context, "id")).Scopes(utils.Paginate(page, pageSize, totalRegisters, pagination)).Preload("Extras").Preload("Addresses").Preload("Emails").Preload("Phones").Find(&person).Error
 	if err != nil {
 		return person, pagination, err
 	}
@@ -50,7 +50,7 @@ func (connection *personRepository) ReadAll(page int, pageSize int) (person *[]e
 }
 
 func (connection *personRepository) Read(id uuid.UUID) (person *entity.Person, err error) {
-	err = connection.database.Scopes(utils.FilterDataOwnerRestriction(connection.context, "id")).Preload("Addresses").Preload("Emails").Preload("Phones").First(&person, id).Error
+	err = connection.database.Scopes(utils.FilterDataOwnerRestriction(connection.context, "id")).Preload("Extras").Preload("Addresses").Preload("Emails").Preload("Phones").First(&person, id).Error
 	if err != nil {
 		return person, err
 	}
@@ -63,7 +63,7 @@ func (connection *personRepository) ReadByEmail(email string) (person *entity.Pe
 	if err != nil {
 		return person, err
 	}
-	err = connection.database.Scopes(utils.FilterDataOwnerRestriction(connection.context, "id")).Preload("Addresses").Preload("Emails").Preload("Phones").First(&person, personEmail.PersonID).Error
+	err = connection.database.Scopes(utils.FilterDataOwnerRestriction(connection.context, "id")).Preload("Extras").Preload("Addresses").Preload("Emails").Preload("Phones").First(&person, personEmail.PersonID).Error
 	if err != nil {
 		return person, err
 	}
@@ -76,7 +76,7 @@ func (connection *personRepository) ReadByPhoneNumber(countryCode int, areaCode 
 	if err != nil {
 		return person, err
 	}
-	err = connection.database.Scopes(utils.FilterDataOwnerRestriction(connection.context, "id")).Preload("Addresses").Preload("Emails").Preload("Phones").First(&person, personPhone.PersonID).Error
+	err = connection.database.Scopes(utils.FilterDataOwnerRestriction(connection.context, "id")).Preload("Extras").Preload("Addresses").Preload("Emails").Preload("Phones").First(&person, personPhone.PersonID).Error
 	if err != nil {
 		return person, err
 	}
@@ -91,7 +91,7 @@ func (connection *personRepository) Update(personData *entity.Person) (updatedPe
 	if err != nil {
 		return updatedPersons, err
 	}
-	err = connection.database.Scopes(utils.FilterDataOwnerRestriction(connection.context, "id")).Preload("Addresses").Preload("Emails").Preload("Phones").First(&updatedPersons, personData.ID).Error
+	err = connection.database.Scopes(utils.FilterDataOwnerRestriction(connection.context, "id")).Preload("Extras").Preload("Addresses").Preload("Emails").Preload("Phones").First(&updatedPersons, personData.ID).Error
 	if err != nil {
 		return updatedPersons, err
 	}

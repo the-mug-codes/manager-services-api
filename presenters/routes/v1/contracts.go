@@ -2,17 +2,17 @@ package v1
 
 import (
 	"github.com/gin-gonic/gin"
-	controllerContracts "github.com/kodit-tecnologia/service-manager/presenters/controllers/contracts"
 	middleware "github.com/the-mug-codes/adapters-service-api/server/middlewares"
+	controllerContracts "github.com/the-mug-codes/service-manager-api/presenters/controllers/contracts"
 )
 
 func Contracts(router *gin.RouterGroup) {
 	contractsRoute := router.Group("contracts")
 	{
-		contractsRoute.POST("", middleware.Protected(nil, nil), controllerContracts.Insert)
-		contractsRoute.GET("", middleware.Protected(nil, nil), controllerContracts.ReadAll)
-		contractsRoute.GET(":id", middleware.Protected(nil, nil), controllerContracts.Read)
-		contractsRoute.PUT(":id", middleware.Protected(nil, nil), controllerContracts.Update)
-		contractsRoute.DELETE(":id", middleware.Protected(nil, nil), controllerContracts.Delete)
+		contractsRoute.POST("", middleware.Protected(&[]string{"admin:full"}), controllerContracts.Insert)
+		contractsRoute.GET("", middleware.Protected(&[]string{"admin:full", "user:self"}), controllerContracts.ReadAll)
+		contractsRoute.GET(":id", middleware.Protected(&[]string{"admin:full", "user:self"}), controllerContracts.Read)
+		contractsRoute.PUT(":id", middleware.Protected(&[]string{"admin:full"}), controllerContracts.Update)
+		contractsRoute.DELETE(":id", middleware.Protected(&[]string{"admin:full"}), controllerContracts.Delete)
 	}
 }

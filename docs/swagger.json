@@ -13,6 +13,366 @@
     "host": "localhost:9000",
     "basePath": "/v1",
     "paths": {
+        "/auth/google": {
+            "post": {
+                "description": "Activates sign-in with a Google account.",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Security - Google"
+                ],
+                "summary": "Activate Google Sign-in for User",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Google access token",
+                        "name": "google_access_token",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Username",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.ResponseNone"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Deactivates sign-in with a Google account.",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Security - Google"
+                ],
+                "summary": "Deactivate Google Sign-in for User",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Username",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.ResponseNone"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/sign-in": {
+            "post": {
+                "description": "Creates a new user access credentials.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Security - Auth"
+                ],
+                "summary": "Sign-in User",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Two factor code",
+                        "name": "code",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Google access token",
+                        "name": "google_access_token",
+                        "in": "query"
+                    },
+                    {
+                        "description": "payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/security.SignIn"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.ResponseOne-security_Token"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/sign-out": {
+            "delete": {
+                "description": "Revokes a new user access credentials.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Security - Auth"
+                ],
+                "summary": "Sign-out User",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Username",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.ResponseNone"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/two-factor": {
+            "get": {
+                "description": "Generate two factor for validate sign-in.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Security - Two Factor"
+                ],
+                "summary": "Generate Two Factor Authentication for User",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Username",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.ResponseOne-two_factor_OtpResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Activates two factor for validate sign-in.",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Security - Two Factor"
+                ],
+                "summary": "Activate Two Factor Authentication for User",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Two factor code",
+                        "name": "code",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Username",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.ResponseNone"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Deactivates two factor for validate sign-in.",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Security - Two Factor"
+                ],
+                "summary": "Deactivate Two Factor Authentication for User",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Username",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.ResponseNone"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    }
+                }
+            }
+        },
         "/contract/{id}": {
             "delete": {
                 "description": "Removes a contract by idfrom database.",
@@ -1135,6 +1495,105 @@
                 }
             }
         },
+        "/password/change": {
+            "post": {
+                "description": "Changes a user password.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Security - Password"
+                ],
+                "summary": "Change a User Password",
+                "parameters": [
+                    {
+                        "description": "payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/security.PasswordRecovery"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.ResponseOne-security_Token"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/password/forgot": {
+            "post": {
+                "description": "Sets a user password as forgotten.",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Security - Password"
+                ],
+                "summary": "Set a User Password as Forgot",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Username",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.ResponseNone"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    }
+                }
+            }
+        },
         "/people": {
             "get": {
                 "description": "Get all people from database.",
@@ -1972,6 +2431,307 @@
                 "responses": {
                     "200": {
                         "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.ResponseNone"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/token/refresh": {
+            "put": {
+                "description": "Refresh user access tokens.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Security - Token"
+                ],
+                "summary": "Refesh Tokens",
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.ResponseOne-security_Token"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/whatsapp/media/:id": {
+            "get": {
+                "description": "Reads a WhatsApp media file.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WhatsApp"
+                ],
+                "summary": "Read a WhatsApp media file",
+                "parameters": [
+                    {
+                        "description": "payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/whatsapp.SendInteractiveMessage"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "file"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/whatsapp/messages/:phone/interactive": {
+            "post": {
+                "description": "Sends a new WhatsApp interactive message.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WhatsApp"
+                ],
+                "summary": "Send a WhatsApp interactive message",
+                "parameters": [
+                    {
+                        "description": "payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/whatsapp.SendInteractiveMessage"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.ResponseNone"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/whatsapp/messages/:phone/media": {
+            "post": {
+                "description": "Sends a new WhatsApp media message.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WhatsApp"
+                ],
+                "summary": "Send a WhatsApp media message",
+                "parameters": [
+                    {
+                        "description": "payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/whatsapp.SendMediaMessage"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.ResponseNone"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/whatsapp/messages/:phone/template": {
+            "post": {
+                "description": "Sends a new WhatsApp template message.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WhatsApp"
+                ],
+                "summary": "Send a WhatsApp template message",
+                "parameters": [
+                    {
+                        "description": "payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/whatsapp.SendTemplateMessage"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.ResponseNone"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/whatsapp/messages/:phone/text": {
+            "post": {
+                "description": "Sends a new WhatsApp text message.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WhatsApp"
+                ],
+                "summary": "Send a WhatsApp text message",
+                "parameters": [
+                    {
+                        "description": "payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/whatsapp.SendTextMessage"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
                         "schema": {
                             "$ref": "#/definitions/helpers.ResponseNone"
                         }
@@ -3101,6 +3861,12 @@
                         "$ref": "#/definitions/entities.PersonEmail"
                     }
                 },
+                "extras": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/entities.PersonExtra"
+                    }
+                },
                 "id": {
                     "type": "string"
                 },
@@ -3208,6 +3974,37 @@
                     "type": "string"
                 },
                 "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "entities.PersonExtra": {
+            "type": "object",
+            "required": [
+                "key",
+                "person_id",
+                "value"
+            ],
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "$ref": "#/definitions/gorm.DeletedAt"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "person_id": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "value": {
                     "type": "string"
                 }
             }
@@ -3419,6 +4216,12 @@
                 "person_id": {
                     "type": "string"
                 },
+                "repositories": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/entities.Repositories"
+                    }
+                },
                 "requirements": {
                     "type": "array",
                     "items": {
@@ -3429,6 +4232,36 @@
                     "type": "string"
                 },
                 "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "entities.Repositories": {
+            "type": "object",
+            "required": [
+                "name",
+                "url"
+            ],
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "$ref": "#/definitions/gorm.DeletedAt"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "project_id": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "url": {
                     "type": "string"
                 }
             }
@@ -3815,6 +4648,111 @@
                 }
             }
         },
+        "helpers.ResponseOne-security_Token": {
+            "type": "object",
+            "required": [
+                "success"
+            ],
+            "properties": {
+                "payload": {
+                    "$ref": "#/definitions/security.Token"
+                },
+                "success": {
+                    "type": "boolean",
+                    "example": true
+                }
+            }
+        },
+        "helpers.ResponseOne-two_factor_OtpResponse": {
+            "type": "object",
+            "required": [
+                "success"
+            ],
+            "properties": {
+                "payload": {
+                    "$ref": "#/definitions/two_factor.OtpResponse"
+                },
+                "success": {
+                    "type": "boolean",
+                    "example": true
+                }
+            }
+        },
+        "security.PasswordRecovery": {
+            "type": "object",
+            "required": [
+                "code",
+                "password",
+                "username"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "security.SignIn": {
+            "type": "object",
+            "properties": {
+                "keep_connected": {
+                    "type": "boolean"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "security.Token": {
+            "type": "object",
+            "required": [
+                "access_token",
+                "is_blocked",
+                "login_tries",
+                "refresh_token",
+                "two_factor"
+            ],
+            "properties": {
+                "access_token": {
+                    "type": "string"
+                },
+                "is_blocked": {
+                    "type": "boolean"
+                },
+                "login_tries": {
+                    "type": "integer"
+                },
+                "refresh_token": {
+                    "type": "string"
+                },
+                "two_factor": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "two_factor.OtpResponse": {
+            "type": "object",
+            "required": [
+                "qr_code",
+                "secret"
+            ],
+            "properties": {
+                "qr_code": {
+                    "type": "string"
+                },
+                "secret": {
+                    "type": "string"
+                }
+            }
+        },
         "utils.Pagination": {
             "type": "object",
             "properties": {
@@ -3837,6 +4775,298 @@
                     "type": "integer"
                 }
             }
+        },
+        "whatsapp.SendInteractiveMessage": {
+            "type": "object",
+            "required": [
+                "action",
+                "type"
+            ],
+            "properties": {
+                "action": {
+                    "$ref": "#/definitions/whatsapp.action"
+                },
+                "body": {
+                    "type": "object",
+                    "required": [
+                        "text"
+                    ],
+                    "properties": {
+                        "text": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "footer": {
+                    "type": "object",
+                    "required": [
+                        "text"
+                    ],
+                    "properties": {
+                        "text": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "header": {
+                    "type": "object",
+                    "required": [
+                        "text"
+                    ],
+                    "properties": {
+                        "text": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": {
+                    "$ref": "#/definitions/whatsapp.interactiveType"
+                }
+            }
+        },
+        "whatsapp.SendMediaMessage": {
+            "type": "object",
+            "required": [
+                "link"
+            ],
+            "properties": {
+                "caption": {
+                    "type": "string"
+                },
+                "link": {
+                    "type": "string"
+                }
+            }
+        },
+        "whatsapp.SendTemplateMessage": {
+            "type": "object",
+            "required": [
+                "language",
+                "name"
+            ],
+            "properties": {
+                "components": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/whatsapp.components"
+                    }
+                },
+                "language": {
+                    "$ref": "#/definitions/whatsapp.language"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "whatsapp.SendTextMessage": {
+            "type": "object",
+            "required": [
+                "body"
+            ],
+            "properties": {
+                "body": {
+                    "type": "string"
+                },
+                "preview_url": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "whatsapp.action": {
+            "type": "object",
+            "properties": {
+                "button": {
+                    "type": "string"
+                },
+                "buttons": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "type"
+                        ],
+                        "properties": {
+                            "reply": {
+                                "type": "object",
+                                "required": [
+                                    "id",
+                                    "title"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "type": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "sections": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "rows",
+                            "title"
+                        ],
+                        "properties": {
+                            "rows": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "required": [
+                                        "id",
+                                        "title"
+                                    ],
+                                    "properties": {
+                                        "description": {
+                                            "type": "string"
+                                        },
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "title": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "whatsapp.components": {
+            "type": "object",
+            "properties": {
+                "index": {
+                    "type": "integer"
+                },
+                "parameters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/whatsapp.parameters"
+                    }
+                },
+                "sub_type": {
+                    "$ref": "#/definitions/whatsapp.componentsSubType"
+                },
+                "type": {
+                    "$ref": "#/definitions/whatsapp.componentsType"
+                }
+            }
+        },
+        "whatsapp.componentsSubType": {
+            "type": "string",
+            "enum": [
+                "quick_reply",
+                "url",
+                "catalog"
+            ],
+            "x-enum-varnames": [
+                "ComponentSubTypeQuickReply",
+                "ComponentSubTypeURL",
+                "ComponentSubTypeCatalog"
+            ]
+        },
+        "whatsapp.componentsType": {
+            "type": "string",
+            "enum": [
+                "header",
+                "body",
+                "button"
+            ],
+            "x-enum-varnames": [
+                "ComponentTypeHeader",
+                "ComponentTypeBody",
+                "ComponentTypeButton"
+            ]
+        },
+        "whatsapp.interactiveType": {
+            "type": "string",
+            "enum": [
+                "button",
+                "list"
+            ],
+            "x-enum-varnames": [
+                "InteractiveTypeButton",
+                "InteractiveTypeList"
+            ]
+        },
+        "whatsapp.language": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "whatsapp.parameters": {
+            "type": "object",
+            "properties": {
+                "audio": {
+                    "$ref": "#/definitions/whatsapp.SendMediaMessage"
+                },
+                "button": {
+                    "type": "object",
+                    "properties": {
+                        "payload": {
+                            "type": "string"
+                        },
+                        "text": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "document": {
+                    "$ref": "#/definitions/whatsapp.SendMediaMessage"
+                },
+                "image": {
+                    "$ref": "#/definitions/whatsapp.SendMediaMessage"
+                },
+                "sticker": {
+                    "$ref": "#/definitions/whatsapp.SendMediaMessage"
+                },
+                "text": {
+                    "$ref": "#/definitions/whatsapp.parametersType"
+                },
+                "type": {
+                    "$ref": "#/definitions/whatsapp.parametersType"
+                },
+                "video": {
+                    "$ref": "#/definitions/whatsapp.SendMediaMessage"
+                }
+            }
+        },
+        "whatsapp.parametersType": {
+            "type": "string",
+            "enum": [
+                "button",
+                "document",
+                "image",
+                "text",
+                "video"
+            ],
+            "x-enum-varnames": [
+                "ParameterTypeButton",
+                "ParameterTypeDocument",
+                "ParameterTypeImage",
+                "ParameterTypeText",
+                "ParameterTypeVideo"
+            ]
         }
     },
     "securityDefinitions": {

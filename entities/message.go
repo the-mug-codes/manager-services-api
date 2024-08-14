@@ -1,5 +1,32 @@
 package entities
 
+type WhatsappMessageType string
+
+const (
+	WhatsappMessageTypeText        WhatsappMessageType = "text"
+	WhatsappMessageTypeInteractive WhatsappMessageType = "interactive"
+	WhatsappMessageTypeTemplate    WhatsappMessageType = "template"
+	WhatsappMessageTypeAudio       WhatsappMessageType = "audio"
+	WhatsappMessageTypeDocument    WhatsappMessageType = "document"
+	WhatsappMessageTypeImage       WhatsappMessageType = "image"
+	WhatsappMessageTypeSticker     WhatsappMessageType = "sticker"
+	WhatsappMessageTypeVideo       WhatsappMessageType = "video"
+)
+
+type WhatsappMessage struct {
+	MessageType     WhatsappMessageType `json:"message_type" binding:"required"`
+	Template        *string             `json:"template" binding:"omitempty"`
+	Language        *string             `json:"language" binding:"omitempty"`
+	HeaderVariables *[]string           `json:"header_variables" binding:"omitempty"`
+	BodyVariables   *[]string           `json:"body_variables" binding:"omitempty"`
+	ButtonVariables *[]string           `json:"button_variables" binding:"omitempty"`
+	Header          *string             `json:"header" binding:"omitempty"`
+	Body            *string             `json:"body" binding:"omitempty"`
+	Footer          *string             `json:"footer" binding:"omitempty"`
+	Buttons         *[]string           `json:"buttons" binding:"omitempty"`
+	URL             *string             `json:"url" binding:"omitempty"`
+}
+
 type EmailAttachment struct {
 	Content     string `json:"content"`
 	Filename    string `json:"filename"`

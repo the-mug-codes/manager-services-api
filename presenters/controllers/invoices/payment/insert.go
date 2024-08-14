@@ -4,10 +4,10 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/google/uuid"
-	pix "github.com/kodit-tecnologia/service-manager/adapters/pix"
-	repository "github.com/kodit-tecnologia/service-manager/repositories"
-	invoice "github.com/kodit-tecnologia/service-manager/use_cases/invoice"
 	helper "github.com/the-mug-codes/adapters-service-api/server/helpers"
+	pix "github.com/the-mug-codes/service-manager-api/adapters/pix"
+	repository "github.com/the-mug-codes/service-manager-api/repositories"
+	invoice "github.com/the-mug-codes/service-manager-api/use_cases/invoice"
 )
 
 type insertPayment struct {

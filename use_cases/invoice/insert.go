@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	entity "github.com/kodit-tecnologia/service-manager/entities"
+	entity "github.com/the-mug-codes/service-manager-api/entities"
 )
 
 func generateCode(data entity.Invoice) string {

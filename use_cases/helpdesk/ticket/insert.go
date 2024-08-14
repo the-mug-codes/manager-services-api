@@ -1,7 +1,7 @@
 package people
 
 import (
-	entity "github.com/kodit-tecnologia/service-manager/entities"
+	entity "github.com/the-mug-codes/service-manager-api/entities"
 )
 
 func Insert(ticket entity.HelpDeskTicketRepository, dataToInsert entity.HelpDeskTicket) (insertedData *entity.HelpDeskTicket, err error) {

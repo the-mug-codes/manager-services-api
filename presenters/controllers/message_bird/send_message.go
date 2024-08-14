@@ -3,9 +3,9 @@ package message_bird
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
-	messageBird "github.com/kodit-tecnologia/service-manager/adapters/messagebird"
-	entity "github.com/kodit-tecnologia/service-manager/entities"
 	helper "github.com/the-mug-codes/adapters-service-api/server/helpers"
+	messageBird "github.com/the-mug-codes/service-manager-api/adapters/messagebird"
+	entity "github.com/the-mug-codes/service-manager-api/entities"
 )
 
 func SendMessage(context *gin.Context) {

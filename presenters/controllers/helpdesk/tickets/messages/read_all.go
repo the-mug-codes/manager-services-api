@@ -2,9 +2,9 @@ package attachment
 
 import (
 	"github.com/gin-gonic/gin"
-	repository "github.com/kodit-tecnologia/service-manager/repositories/helpdesk"
-	helpDeskTicketMessage "github.com/kodit-tecnologia/service-manager/use_cases/helpdesk/ticket/message"
 	helper "github.com/the-mug-codes/adapters-service-api/server/helpers"
+	repository "github.com/the-mug-codes/service-manager-api/repositories/helpdesk"
+	helpDeskTicketMessage "github.com/the-mug-codes/service-manager-api/use_cases/helpdesk/ticket/message"
 )
 
 // @Summary		Show All HelpDesk Tickets Messages

@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	entity "github.com/kodit-tecnologia/service-manager/entities"
+	entity "github.com/the-mug-codes/service-manager-api/entities"
 )
 
 func generateBase64File(file []byte) (base64File string, err error) {

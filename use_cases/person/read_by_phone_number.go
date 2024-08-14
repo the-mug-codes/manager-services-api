@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strconv"
 
-	entity "github.com/kodit-tecnologia/service-manager/entities"
+	entity "github.com/the-mug-codes/service-manager-api/entities"
 )
 
 func ReadByPhoneNumber(person entity.PersonRepository, fullPhoneNumber string) (readData *entity.Person, err error) {

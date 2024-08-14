@@ -2,9 +2,9 @@ package attachment
 
 import (
 	"github.com/gin-gonic/gin"
-	repository "github.com/kodit-tecnologia/service-manager/repositories"
-	contract "github.com/kodit-tecnologia/service-manager/use_cases/contract"
 	helper "github.com/the-mug-codes/adapters-service-api/server/helpers"
+	repository "github.com/the-mug-codes/service-manager-api/repositories"
+	contract "github.com/the-mug-codes/service-manager-api/use_cases/contract"
 )
 
 // @Summary		Show All Contract

@@ -58,6 +58,16 @@ type PersonAddress struct {
 	DeletedAt    *gorm.DeletedAt `gorm:"index" json:"deleted_at,omitempty"`
 }
 
+type PersonExtra struct {
+	ID        uuid.UUID       `gorm:"type:uuid;primary_key" json:"id"`
+	PersonID  string          `json:"person_id" binding:"required"`
+	Key       string          `json:"key" binding:"required"`
+	Value     string          `json:"value" binding:"required"`
+	CreatedAt time.Time       `gorm:"autoCreateTime" json:"created_at"`
+	UpdatedAt time.Time       `gorm:"autoUpdateTime" json:"updated_at"`
+	DeletedAt *gorm.DeletedAt `gorm:"index" json:"deleted_at,omitempty"`
+}
+
 type Person struct {
 	ID           uuid.UUID       `gorm:"type:uuid;primary_key" json:"id"`
 	Nickname     *string         `json:"nickname"`
@@ -67,6 +77,7 @@ type Person struct {
 	Addresses    []PersonAddress `gorm:"foreignKey:PersonID;constraint:OnDelete:CASCADE" json:"addresses"`
 	Emails       []PersonEmail   `gorm:"foreignKey:PersonID;constraint:OnDelete:CASCADE" json:"emails"`
 	Phones       []PersonPhone   `gorm:"foreignKey:PersonID;constraint:OnDelete:CASCADE" json:"phones"`
+	Extras       []PersonExtra   `gorm:"foreignKey:PersonID;constraint:OnDelete:CASCADE" json:"extras"`
 	Status       bool            `gorm:"default:true" json:"status"`
 	CreatedAt    time.Time       `gorm:"autoCreateTime" json:"created_at"`
 	UpdatedAt    time.Time       `gorm:"autoUpdateTime" json:"updated_at"`
@@ -175,6 +186,10 @@ func (PersonAddress) TableName() string {
 	return "manager.people__addresses"
 }
 
+func (PersonExtra) TableName() string {
+	return "manager.people__extras"
+}
+
 func (Person) TableName() string {
 	return "manager.people"
 }
@@ -203,6 +218,14 @@ func (address *PersonAddress) BeforeCreate(tx *gorm.DB) (err error) {
 	return
 }
 
+func (extra *PersonExtra) BeforeCreate(tx *gorm.DB) (err error) {
+	if extra.ID == uuid.Nil {
+		extra.ID = uuid.New()
+	}
+	extra.CreatedAt = time.Now()
+	return
+}
+
 func (person *Person) BeforeCreate(tx *gorm.DB) (err error) {
 	person.ID = uuid.New()
 	person.CreatedAt = time.Now()
@@ -222,6 +245,11 @@ func (email *PersonEmail) BeforeUpdate(tx *gorm.DB) (err error) {
 
 func (address *PersonAddress) BeforeUpdate(tx *gorm.DB) (err error) {
 	address.UpdatedAt = time.Now()
+	return nil
+}
+
+func (extra *PersonExtra) BeforeUpdate(tx *gorm.DB) (err error) {
+	extra.UpdatedAt = time.Now()
 	return nil
 }
 

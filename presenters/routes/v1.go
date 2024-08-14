@@ -2,7 +2,7 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	v1 "github.com/kodit-tecnologia/service-manager/presenters/routes/v1"
+	v1 "github.com/the-mug-codes/service-manager-api/presenters/routes/v1"
 )
 
 func Routes(router *gin.Engine) {
@@ -16,5 +16,8 @@ func Routes(router *gin.Engine) {
 		v1.People(main)
 		v1.Projects(main)
 		v1.Products(main)
+		v1.Security(main)
+		v1.Whatsapp(main)
+		v1.Chat(main)
 	}
 }

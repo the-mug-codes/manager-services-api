@@ -1,0 +1,35 @@
+# fly.toml app configuration file generated for the-mug-codes-service-api on 2024-07-14T10:49:04-03:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'the-mug-codes-service-api'
+primary_region = 'gru'
+
+[build]
+  dockerfile = "Dockerfile"
+
+[build.args]
+  GITHUB_TOKEN = ''
+
+[env]
+  MODE = 'production'
+  APP_PORT = 80
+
+[http_service]
+  internal_port = 80
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ['app']
+
+[[restart]]
+  policy = 'on-failure'
+  retries = 5
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1

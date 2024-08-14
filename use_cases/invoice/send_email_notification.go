@@ -3,7 +3,7 @@ package people
 import (
 	"fmt"
 
-	entity "github.com/kodit-tecnologia/service-manager/entities"
+	entity "github.com/the-mug-codes/service-manager-api/entities"
 )
 
 func SendEmailNotification(sendGrid entity.InvoiceEmail, html entity.InvoiceHtml, pdf entity.InvoicePDF, invoice entity.Invoice) (err error) {

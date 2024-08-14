@@ -4,14 +4,14 @@ import (
 	"log"
 	"time"
 
-	entity "github.com/kodit-tecnologia/service-manager/entities"
-	"github.com/the-mug-codes/adapters-service-api/logger"
+	security "github.com/the-mug-codes/adapters-service-api/security"
+	entity "github.com/the-mug-codes/service-manager-api/entities"
 	"gorm.io/gorm"
 )
 
 func Migrations(database *gorm.DB) {
 	err := database.AutoMigrate(
-		&logger.Log{},
+		&security.User{},
 	)
 	if err != nil {
 		log.Fatalln(err)
@@ -24,6 +24,7 @@ func Migrations(database *gorm.DB) {
 	}
 	err = database.AutoMigrate(
 		&entity.Person{},
+		&entity.PersonExtra{},
 		&entity.PersonAddress{},
 		&entity.PersonEmail{},
 		&entity.PersonPhone{},
@@ -61,6 +62,13 @@ func Migrations(database *gorm.DB) {
 	err = database.AutoMigrate(
 		&entity.Invoice{},
 		&entity.InvoiceItem{},
+	)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	err = database.AutoMigrate(
+		&entity.ChatSession{},
+		&entity.ChatMessage{},
 	)
 	if err != nil {
 		log.Fatalln(err)

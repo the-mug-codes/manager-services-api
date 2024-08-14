@@ -1,7 +1,7 @@
 package people
 
 import (
-	entity "github.com/kodit-tecnologia/service-manager/entities"
+	entity "github.com/the-mug-codes/service-manager-api/entities"
 )
 
 func GeneratePDF(html entity.InvoiceHtml, pdf entity.InvoicePDF, invoice entity.Invoice) (file *[]byte, err error) {

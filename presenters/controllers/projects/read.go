@@ -3,9 +3,9 @@ package attachment
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	repository "github.com/kodit-tecnologia/service-manager/repositories"
-	project "github.com/kodit-tecnologia/service-manager/use_cases/project"
 	helper "github.com/the-mug-codes/adapters-service-api/server/helpers"
+	repository "github.com/the-mug-codes/service-manager-api/repositories"
+	project "github.com/the-mug-codes/service-manager-api/use_cases/project"
 )
 
 // @Summary		Show a Project

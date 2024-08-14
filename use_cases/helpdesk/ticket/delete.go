@@ -2,7 +2,7 @@ package people
 
 import (
 	"github.com/google/uuid"
-	entity "github.com/kodit-tecnologia/service-manager/entities"
+	entity "github.com/the-mug-codes/service-manager-api/entities"
 )
 
 func Delete(ticket entity.HelpDeskTicketRepository, id uuid.UUID) (err error) {

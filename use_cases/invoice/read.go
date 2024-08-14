@@ -2,7 +2,7 @@ package people
 
 import (
 	"github.com/google/uuid"
-	entity "github.com/kodit-tecnologia/service-manager/entities"
+	entity "github.com/the-mug-codes/service-manager-api/entities"
 )
 
 func Read(invoice entity.InvoiceRepository, id uuid.UUID) (readData *entity.Invoice, err error) {

@@ -3,10 +3,10 @@ package attachment
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
-	entity "github.com/kodit-tecnologia/service-manager/entities"
-	repository "github.com/kodit-tecnologia/service-manager/repositories"
-	label "github.com/kodit-tecnologia/service-manager/use_cases/label"
 	helper "github.com/the-mug-codes/adapters-service-api/server/helpers"
+	entity "github.com/the-mug-codes/service-manager-api/entities"
+	repository "github.com/the-mug-codes/service-manager-api/repositories"
+	label "github.com/the-mug-codes/service-manager-api/use_cases/label"
 )
 
 type insertLabel struct {
