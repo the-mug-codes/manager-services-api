@@ -8,9 +8,13 @@ import (
 func Chat(router *gin.RouterGroup) {
 	chatRoute := router.Group("chat")
 	{
-		chatRoute.POST("create", controllerChat.CreateSection)
-		chatRoute.GET("sessions", controllerChat.ReadSections)
-		chatRoute.GET("join/:id", controllerChat.JoinSection)
-		chatRoute.DELETE(":id", controllerChat.DeleteSection)
+		sessionsRoute := chatRoute.Group("sessions")
+		{
+			sessionsRoute.POST("", controllerChat.CreateSection)
+			sessionsRoute.GET("join/:id", controllerChat.JoinSection)
+			sessionsRoute.GET("", controllerChat.ReadSections)
+			sessionsRoute.GET(":id/messages", controllerChat.ReadMessages)
+			sessionsRoute.DELETE(":id", controllerChat.DeleteSection)
+		}
 	}
 }
