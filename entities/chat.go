@@ -10,7 +10,7 @@ import (
 
 type ChatMessage struct {
 	ID          uuid.UUID       `json:"id" binding:"required"`
-	SessionID   uuid.UUID       `json:"session" binding:"required"`
+	SessionID   uuid.UUID       `json:"session_id" binding:"required"`
 	Name        string          `json:"name" binding:"required"`
 	Avatar      *string         `json:"avatar,omitempty"`
 	MessageType string          `json:"message_type" binding:"required"`
