@@ -2,10 +2,12 @@ package websocket
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 
 	"github.com/google/uuid"
 	"github.com/gorilla/websocket"
+	"github.com/the-mug-codes/service-manager-api/adapters/whatsapp"
 	entity "github.com/the-mug-codes/service-manager-api/entities"
 )
 
@@ -74,7 +76,7 @@ type ChatClient struct {
 	Message   chan *entity.ChatMessage
 }
 
-func (chatClient *ChatClient) WriteMessage(chatMessage entity.ChatMessageRepository) {
+func (chatClient *ChatClient) WriteMessage() {
 	defer func() {
 		chatClient.Conn.Close()
 	}()
@@ -83,12 +85,7 @@ func (chatClient *ChatClient) WriteMessage(chatMessage entity.ChatMessageReposit
 		if !ok {
 			return
 		}
-		_, err := chatMessage.Insert(message)
-		if err != nil {
-			log.Println("Error on saving message:", err)
-			return
-		}
-		err = chatClient.Conn.WriteJSON(message)
+		err := chatClient.Conn.WriteJSON(message)
 		if err != nil {
 			log.Println("Error writing message:", err)
 			return
@@ -96,7 +93,7 @@ func (chatClient *ChatClient) WriteMessage(chatMessage entity.ChatMessageReposit
 	}
 }
 
-func (chatClient *ChatClient) ReadMessage(chatHubSessions *WebsocketChatSessions) {
+func (chatClient *ChatClient) ReadMessage(chatHubSessions *WebsocketChatSessions, chatSession entity.ChatSessionRepository, chatMessage entity.ChatMessageRepository, whatsappConnection whatsapp.WhatsappInterface) {
 	defer func() {
 		chatHubSessions.Unregister <- chatClient
 		chatClient.Conn.Close()
@@ -111,9 +108,32 @@ func (chatClient *ChatClient) ReadMessage(chatHubSessions *WebsocketChatSessions
 			}
 			return
 		}
-		var msg *entity.ChatMessage
-		json.Unmarshal(message, msg)
-		chatHubSessions.Broadcast <- msg
+		var msg entity.ChatMessage
+		err = json.Unmarshal(message, &msg)
+		if err != nil {
+			log.Println("Unexpected message error:", err)
+		}
+		session, err := chatSession.Read(msg.SessionID)
+		if err != nil {
+			log.Println("Error on reading session:", err)
+			return
+		}
+		if session.Channel == "whatsapp" {
+			err = whatsappConnection.SendTextMessage(fmt.Sprintf("%v", *session.PhoneNumber), whatsapp.SendTextMessage{
+				Body:       *msg.Body,
+				PreviewUrl: true,
+			})
+			if err != nil {
+				log.Println("Error on sending whatsapp message:", err)
+				return
+			}
+		}
+		_, err = chatMessage.Insert(&msg)
+		if err != nil {
+			log.Println("Error on saving message:", err)
+			return
+		}
+		chatHubSessions.Broadcast <- &msg
 	}
 }
 

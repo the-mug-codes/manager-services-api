@@ -34,7 +34,8 @@ func (chatMessage *ChatMessage) BeforeCreate(tx *gorm.DB) (err error) {
 type ChatMessageRepository interface {
 	Insert(chatMessageData *ChatMessage) (insertedChatMessageData *ChatMessage, err error)
 	Read(id uuid.UUID) (chatMessage *ChatMessage, err error)
-	ReadAll(page int, pageSize int) (chatMessage *[]ChatMessage, pagination *utils.Pagination, err error)
+	ReadAll(page int, pageSize int) (chatMessages *[]ChatMessage, pagination *utils.Pagination, err error)
+	ReadAllBySession(sessionID uuid.UUID, page int, pageSize int) (chatMessages *[]ChatMessage, pagination *utils.Pagination, err error)
 	Update(chatMessageData *ChatMessage) (updatedChatMessage *ChatMessage, err error)
 	Delete(id uuid.UUID) (err error)
 }

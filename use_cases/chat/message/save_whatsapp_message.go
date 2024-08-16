@@ -15,7 +15,7 @@ func SaveWhatsAppMessage(chatSession entity.ChatSessionRepository, chatMessage e
 		return err
 	}
 	session, _ = chatSession.ReadByPhoneNumber(phoneNumber)
-	if session == nil || (session != nil && !session.Status) {
+	if session == nil || !session.Status {
 		newChatSession := &entity.ChatSession{
 			Channel:     "whatsapp",
 			PhoneNumber: &phoneNumber,

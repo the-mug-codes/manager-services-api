@@ -33,17 +33,30 @@ func (connection *chatMessageRepository) Insert(chatMessageData *entity.ChatMess
 	return insertedChatMessage, err
 }
 
-func (connection *chatMessageRepository) ReadAll(page int, pageSize int) (chatMessage *[]entity.ChatMessage, pagination *utils.Pagination, err error) {
+func (connection *chatMessageRepository) ReadAll(page int, pageSize int) (chatMessages *[]entity.ChatMessage, pagination *utils.Pagination, err error) {
 	var totalRegisters int64
 	err = connection.database.Find(&entity.ChatMessage{}).Count(&totalRegisters).Error
 	if err != nil {
-		return chatMessage, pagination, err
+		return chatMessages, pagination, err
 	}
-	err = connection.database.Scopes(utils.Paginate(page, pageSize, totalRegisters, pagination)).Find(&chatMessage).Error
+	err = connection.database.Scopes(utils.Paginate(page, pageSize, totalRegisters, pagination)).Find(&chatMessages).Error
 	if err != nil {
-		return chatMessage, pagination, err
+		return chatMessages, pagination, err
 	}
-	return chatMessage, pagination, err
+	return chatMessages, pagination, err
+}
+
+func (connection *chatMessageRepository) ReadAllBySession(sessionID uuid.UUID, page int, pageSize int) (chatMessages *[]entity.ChatMessage, pagination *utils.Pagination, err error) {
+	var totalRegisters int64
+	err = connection.database.Where("session_id = ?", sessionID).Find(&entity.ChatMessage{}).Count(&totalRegisters).Error
+	if err != nil {
+		return chatMessages, pagination, err
+	}
+	err = connection.database.Scopes(utils.Paginate(page, pageSize, totalRegisters, pagination)).Where("session_id = ?", sessionID).Find(&chatMessages).Error
+	if err != nil {
+		return chatMessages, pagination, err
+	}
+	return chatMessages, pagination, err
 }
 
 func (connection *chatMessageRepository) Read(id uuid.UUID) (chatMessage *entity.ChatMessage, err error) {

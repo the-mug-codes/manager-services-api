@@ -76,7 +76,7 @@ func (connection *personRepository) ReadByPhoneNumber(countryCode int, areaCode 
 	if err != nil {
 		return person, err
 	}
-	err = connection.database.Scopes(utils.FilterDataOwnerRestriction(connection.context, "id")).Preload("Extras").Preload("Addresses").Preload("Emails").Preload("Phones").First(&person, personPhone.PersonID).Error
+	err = connection.database.Scopes(utils.FilterDataOwnerRestriction(connection.context, "id")).Preload("Extras").Preload("Addresses").Preload("Emails").Preload("Phones").Last(&person, personPhone.PersonID).Error
 	if err != nil {
 		return person, err
 	}

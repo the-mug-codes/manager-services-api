@@ -55,7 +55,7 @@ func (connection *chatSessionRepository) Read(id uuid.UUID) (chatSession *entity
 }
 
 func (connection *chatSessionRepository) ReadByPhoneNumber(phoneNumber int) (chatSession *entity.ChatSession, err error) {
-	err = connection.database.Where("phone_number = ?", phoneNumber).First(&chatSession).Error
+	err = connection.database.Where("phone_number = ?", phoneNumber).Last(&chatSession).Error
 	if err != nil {
 		return chatSession, err
 	}
