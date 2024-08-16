@@ -10,7 +10,7 @@ primary_region = 'gru'
   dockerfile = "Dockerfile"
 
 [build.args]
-  GITHUB_TOKEN = ''
+  GITHUB_TOKEN = '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'
 
 [env]
   MODE = 'production'

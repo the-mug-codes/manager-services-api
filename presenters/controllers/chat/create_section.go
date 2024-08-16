@@ -11,7 +11,7 @@ import (
 )
 
 type createSession struct {
-	Email       *string `json:"name,omitempty"`
+	Email       *string `json:"email,omitempty"`
 	PhoneNumber *int    `json:"phone_number,omitempty"`
 }
 
