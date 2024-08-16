@@ -120,7 +120,7 @@ func (chatClient *ChatClient) ReadMessage(chatHubSessions *WebsocketChatSessions
 		}
 		if session.Channel == "whatsapp" {
 			err = whatsappConnection.SendTextMessage(fmt.Sprintf("%v", *session.PhoneNumber), whatsapp.SendTextMessage{
-				Body:       *msg.Body,
+				Body:       fmt.Sprintf("*%s*:\n%s", msg.Name, *msg.Body),
 				PreviewUrl: true,
 			})
 			if err != nil {
