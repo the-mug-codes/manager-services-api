@@ -37,7 +37,7 @@ func Teste(context *gin.Context) {
 	if err != nil {
 		panic(err)
 	}
-	pdfDocumentPath, _ := pdf.GenerateFile(uuid.NewString(), *htmlString, "INV-9ec39008-b9f7", true, false, "A4", "Portrait")
+	pdfDocumentPath, _ := pdf.GenerateFile(uuid.NewString(), *htmlString, "INV-b52c674e-bcef", true, false, "A4", "Portrait")
 	file, _ := pdf.GenerateBinary(pdfDocumentPath, true)
 	context.Header("Content-Disposition", fmt.Sprintf("attachment; filename=%s.pdf", "INV-9ec39008-b9f7"))
 	context.Data(200, "application/pdf", *file)
