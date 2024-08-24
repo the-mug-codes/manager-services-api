@@ -69,7 +69,7 @@ func (asaas *asaas) CreateCustomer(newCustomer NewCustomer) (createdCustomer *Cu
 }
 
 func (asaas *asaas) ReadAllCustomers() (customers *[]Customer, err error) {
-	responseBody, err := asaas.apiRequest("put", "/customers/", nil, nil)
+	responseBody, err := asaas.apiRequest("GET", "/customers/", nil, nil)
 	if err != nil {
 		return customers, err
 	}
@@ -81,7 +81,7 @@ func (asaas *asaas) ReadAllCustomers() (customers *[]Customer, err error) {
 }
 
 func (asaas *asaas) ReadCustomer(id string) (customer *Customer, err error) {
-	responseBody, err := asaas.apiRequest("put", fmt.Sprintf("/customers/%s", id), nil, nil)
+	responseBody, err := asaas.apiRequest("GET", fmt.Sprintf("/customers/%s/", id), nil, nil)
 	if err != nil {
 		return customer, err
 	}
@@ -98,7 +98,7 @@ func (asaas *asaas) UpdateCustomer(customer Customer) (updatedCustomer *Customer
 	if err != nil {
 		return updatedCustomer, err
 	}
-	responseBody, err := asaas.apiRequest("put", fmt.Sprintf("/customers/%s", id), &requestBody, nil)
+	responseBody, err := asaas.apiRequest("PUT", fmt.Sprintf("/customers/%s/", id), &requestBody, nil)
 	if err != nil {
 		return updatedCustomer, err
 	}
@@ -110,7 +110,7 @@ func (asaas *asaas) UpdateCustomer(customer Customer) (updatedCustomer *Customer
 }
 
 func (asaas *asaas) DeleteCustomer(id string) (err error) {
-	_, err = asaas.apiRequest("delete", fmt.Sprintf("/customers/%s", id), nil, nil)
+	_, err = asaas.apiRequest("DELETE", fmt.Sprintf("/customers/%s/", id), nil, nil)
 	if err != nil {
 		return err
 	}
@@ -118,7 +118,7 @@ func (asaas *asaas) DeleteCustomer(id string) (err error) {
 }
 
 func (asaas *asaas) RecoverDeletedCustomer(id string) (err error) {
-	_, err = asaas.apiRequest("post", fmt.Sprintf("/customers/%s/restore/", id), nil, nil)
+	_, err = asaas.apiRequest("POST", fmt.Sprintf("/customers/%s/restore/", id), nil, nil)
 	if err != nil {
 		return err
 	}

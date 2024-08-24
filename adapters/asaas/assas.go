@@ -28,9 +28,17 @@ type AsaasInterface interface {
 	CreatePayment(newPayment NewPayment) (createdPayment *Payment, err error)
 	ReadAllPayments() (payments *[]Payment, err error)
 	ReadPayment(id string) (payments *Payment, err error)
+	ReadPaymentStatus(id string) (status *string, err error)
+	ReadPaymentBankSlip(id string) (bankSlip *BankSlip, err error)
+	RefundPaymentPix(id string) (pix *Pix, err error)
 	UpdatePayment(payments Payment) (updatedPayment *Payment, err error)
 	DeletePayment(id string) (err error)
 	RecoverDeletedPayment(id string) (err error)
+	CapturePreAuthorizedPayment(id string) (err error)
+	CreateCreditCardToken(newCreditCardToken NewCreditCardToken) (creditCardToken *CreditCardToken, err error)
+	PayWithCreditCard(id string, creditCardToken string) (err error)
+	RefundPayment(id string, value float64, description string) (err error)
+	SimulatePayment(value float64, installments int, billingType []BillingType) (paymentSimulation *PaymentSimulation, err error)
 }
 
 type asaas struct {
