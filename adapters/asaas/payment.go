@@ -248,7 +248,9 @@ func (asaas *asaas) RefundPaymentPix(id string) (pix *Pix, err error) {
 }
 
 func (asaas *asaas) ReadPaymentStatus(id string) (status *string, err error) {
-	var statusData = map[string]string{}
+	var statusData struct {
+		Status string `json:"status" binding:"required"`
+	}
 	responseBody, err := asaas.apiRequest("GET", fmt.Sprintf("/payments/%s/status/", id), nil, nil)
 	if err != nil {
 		return status, err
@@ -257,7 +259,7 @@ func (asaas *asaas) ReadPaymentStatus(id string) (status *string, err error) {
 	if err != nil {
 		return status, err
 	}
-	*status = statusData["status"]
+	status = &statusData.Status
 	return status, err
 }
 
